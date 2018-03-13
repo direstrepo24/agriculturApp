@@ -1,0 +1,171 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "name": "grid0",
+              "allowDelete": true,
+              "allowAdd": true,
+              "allowFiltering": true,
+              "allowMultiSorting": false,
+              "allowPaging": true,
+              "allowSorting": true,
+              "count": "${getTipoInsumosCount}",
+              "data": "${getTipoInsumosResult}",
+              "events": {
+                "loadData": [
+                  {
+                    "name": "agriculturebd.getTipoInsumos",
+                    "parameters": [
+                      {
+                        "name": "$top",
+                        "value": "this.grid0.allowPaging ? event.top : null"
+                      },
+                      {
+                        "name": "$skip",
+                        "value": "this.grid0.allowPaging ? event.skip : null"
+                      },
+                      {
+                        "name": "$expand",
+                        "value": ""
+                      },
+                      {
+                        "name": "$count",
+                        "value": "this.grid0.allowPaging"
+                      },
+                      {
+                        "name": "$filter",
+                        "value": "${event.filter}"
+                      },
+                      {
+                        "name": "$orderby",
+                        "value": "${event.orderby}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "name": "getTipoInsumosResult",
+                        "type": "set",
+                        "value": "${result.value}"
+                      },
+                      {
+                        "name": "getTipoInsumosCount",
+                        "type": "set",
+                        "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
+                "delete": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to delete TipoInsumo",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.deleteTipoInsumo",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${event.Id}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "detail": "TipoInsumo deleted!",
+                        "severity": "success",
+                        "summary": "Success",
+                        "type": "notify"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
+                "add": [
+                  {
+                    "path": "add-tipo-insumo",
+                    "type": "popup"
+                  }
+                ],
+                "rowSelect": [
+                  {
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${event.Id}"
+                      }
+                    ],
+                    "path": "edit-tipo-insumo",
+                    "type": "popup"
+                  }
+                ]
+              },
+              "title": "",
+              "columns": [
+                {
+                  "property": "Id",
+                  "title": "Id",
+                  "type": "integer"
+                },
+                {
+                  "property": "Nombre",
+                  "title": "Nombre",
+                  "type": "string"
+                }
+              ],
+              "type": "grid",
+              "emptyText": "No records to display."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getTipoInsumos",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+          },
+          {
+            "name": "$skip",
+            "value": "this.grid0.allowPaging ? 0 : null"
+          },
+          {
+            "name": "$count",
+            "value": "this.grid0.allowPaging"
+          }
+        ],
+        "then": [
+          {
+            "name": "getTipoInsumosResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getTipoInsumosCount",
+            "type": "set",
+            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Tipo Insumos",
+  "access": [
+    "Authenticated"
+  ]
+}

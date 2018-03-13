@@ -1,0 +1,221 @@
+{
+  "access": [
+    "Everybody"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "class": "col-md-12",
+          "components": [
+            {
+              "component": null,
+              "name": "Metodo Pago",
+              "style": {
+                "width": "112.9375px"
+              },
+              "text": "Metodo Pago",
+              "type": "label",
+              "visible": ""
+            },
+            {
+              "data": "${getMetodoPagosResult}",
+              "events": {
+                "change": [
+                  {
+                    "name": "agriculturebd.getDetalleMetodopagos",
+                    "parameters": [
+                      {
+                        "name": "$filter",
+                        "value": "MetodoPagoId eq ${event.Id ? event.Id:-1}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "name": "DetallesMetPagos",
+                        "type": "set",
+                        "value": "${result.value}"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "name": "dropMetodoPago",
+              "placeholder": "Seleccione Metodo de Pago",
+              "style": {
+                "height": "35px",
+                "width": "456px"
+              },
+              "textProperty": "Nombre",
+              "type": "dropdown",
+              "valueProperty": "Id"
+            }
+          ],
+          "style": {
+            "height": "46px"
+          },
+          "type": "col"
+        }
+      ],
+      "style": {
+        "height": "45px",
+        "width": "632px"
+      },
+      "type": "row"
+    },
+    {
+      "events": {
+        "cancel": [
+          {
+            "type": "back"
+          }
+        ],
+        "change": [],
+        "submit": [
+          {
+            "error": [
+              {
+                "detail": "${result.error.message}",
+                "severity": "error",
+                "summary": "Cannot register user",
+                "type": "notify"
+              }
+            ],
+            "name": "Security.registerUser",
+            "parameters": [
+              {
+                "name": "User",
+                "value": "${event}"
+              }
+            ],
+            "then": [
+              {
+                "type": "back"
+              }
+            ],
+            "type": "invoke"
+          }
+        ]
+      },
+      "fields": [
+        {
+          "data": "${DetallesMetPagos}",
+          "defaultValue": "",
+          "disabled": false,
+          "placeholder": "Seleccione Detalle Método Pago",
+          "property": "DetalleMetodopagoId",
+          "requiredText": "is required",
+          "textProperty": "Nombre",
+          "title": "Detalle Metodo Pago",
+          "type": "lookup",
+          "valueProperty": "Id"
+        },
+        {
+          "placeholder": "Digite número Cuenta",
+          "property": "NroCuenta",
+          "title": "Número Cuenta",
+          "type": "string",
+          "requiredText": "is required"
+        },
+        {
+          "property": "Email",
+          "required": true,
+          "requiredText": "is required",
+          "title": "Email",
+          "type": "string"
+        },
+        {
+          "property": "Password",
+          "required": true,
+          "requiredText": "is required",
+          "title": "Password",
+          "type": "password"
+        },
+        {
+          "compare": "Password",
+          "property": "ConfirmPassword",
+          "required": true,
+          "requiredText": "is required",
+          "title": "Confirm password",
+          "type": "password"
+        },
+        {
+          "data": "${getRolsResult}",
+          "placeholder": "Seleccione tipo de usuario",
+          "property": "Tipouser",
+          "required": true,
+          "requiredText": "is required",
+          "textProperty": "Nombre",
+          "title": "Rol o Tipo ",
+          "type": "lookup",
+          "valueProperty": "Id",
+          "visible": ""
+        },
+        {
+          "placeholder": "Ingrese su telefono movil",
+          "property": "PhoneNumber",
+          "required": true,
+          "requiredText": "is required",
+          "title": "Telefono móvil",
+          "type": "string"
+        },
+        {
+          "placeholder": "Ingrese su Nombre",
+          "property": "Nombre",
+          "title": "Nombre",
+          "type": "string",
+          "requiredText": "is required"
+        },
+        {
+          "property": "Apellido",
+          "title": "Apellidos",
+          "type": "string",
+          "requiredText": "is required"
+        },
+        {
+          "property": "Identification",
+          "title": "Identificacion",
+          "type": "string",
+          "requiredText": "is required"
+        }
+      ],
+      "name": "form0",
+      "style": {
+        "height": "617px",
+        "width": "789px"
+      },
+      "submitText": "Register",
+      "type": "form"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getMetodoPagos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getMetodoPagosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getRols",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getRolsResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Register User"
+}

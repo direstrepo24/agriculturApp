@@ -1,0 +1,207 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to create new Usuario!",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.createUsuario",
+                    "parameters": [
+                      {
+                        "name": "Usuario",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "usuarios",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Apellidos",
+                  "required": false,
+                  "title": "Apellidos",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Email",
+                  "required": false,
+                  "title": "Email",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "EmailConfirmed",
+                  "required": true,
+                  "title": "Email Confirmed",
+                  "type": "boolean",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Estado",
+                  "required": false,
+                  "title": "Estado",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "FechaRegistro",
+                  "required": true,
+                  "title": "Fecha Registro",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Fotopefil",
+                  "required": false,
+                  "title": "Fotopefil",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Identificacion",
+                  "required": false,
+                  "title": "Identificacion",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Nombre",
+                  "required": false,
+                  "title": "Nombre",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Nro_movil",
+                  "required": false,
+                  "title": "Nro Movil",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "NumeroCuenta",
+                  "required": false,
+                  "title": "Numero Cuenta",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "PhoneNumber",
+                  "required": false,
+                  "title": "Phone Number",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "PhoneNumberConfirmed",
+                  "required": true,
+                  "title": "Phone Number Confirmed",
+                  "type": "boolean",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "UserName",
+                  "required": false,
+                  "title": "User Name",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getDetalleMetodopagosResult}",
+                  "property": "DetallemetodoPagoId",
+                  "required": true,
+                  "textProperty": "Nombre",
+                  "title": "Detalle Metodopago",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose DetalleMetodopago",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getRolsResult}",
+                  "property": "RolId",
+                  "required": true,
+                  "textProperty": "Nombre",
+                  "title": "Rol",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Rol",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getDetalleMetodopagos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getDetalleMetodopagosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getRols",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getRolsResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Add Usuario",
+  "access": [
+    "Authenticated"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "${rol}",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to update Rol",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.updateRol",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${parameters.Id}"
+                      },
+                      {
+                        "name": "Rol",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "rols",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Nombre",
+                  "required": false,
+                  "title": "Nombre",
+                  "type": "string",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getRolById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "rol",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Rol",
+  "access": [
+    "Authenticated"
+  ]
+}

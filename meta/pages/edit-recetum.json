@@ -1,0 +1,181 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "${recetum}",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to update Recetum",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.updateRecetum",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${parameters.Id}"
+                      },
+                      {
+                        "name": "Recetum",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "receta",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Dosis",
+                  "required": true,
+                  "title": "Dosis",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Modo_uso",
+                  "required": false,
+                  "title": "Modo Uso",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "nombre",
+                  "required": false,
+                  "title": "Nombre",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getEquiposResult}",
+                  "property": "EquipoId",
+                  "required": true,
+                  "textProperty": "Marca",
+                  "title": "Equipo",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Equipo",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getInsumosResult}",
+                  "property": "InsumoId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Insumo",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Insumo",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getUnidadMedidasResult}",
+                  "property": "UnidadId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Unidad Medida",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose UnidadMedida",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getRecetumById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "recetum",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getEquipos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getEquiposResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getInsumos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getInsumosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getUnidadMedidas",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getUnidadMedidasResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Recetum",
+  "access": [
+    "Authenticated"
+  ]
+}

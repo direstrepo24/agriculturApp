@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-form #form0 [data]="compraspago" (cancel)="form0Cancel($event)" (submit)="form0Submit($event)">
+      <rz-integer-form-field property="CompraId" [required]="true" title="Compra Id" requiredText="is required" type="integer">
+      </rz-integer-form-field>
+      <rz-date-form-field property="CreatedOn" [required]="true" title="Created On" requiredText="is required" type="date">
+      </rz-date-form-field>
+      <rz-integer-form-field property="Id" [required]="true" title="Id" requiredText="is required" type="integer">
+      </rz-integer-form-field>
+      <rz-integer-form-field property="PagoId" [required]="true" title="Pago Id" requiredText="is required" type="integer">
+      </rz-integer-form-field>
+      <rz-date-form-field property="UpdatedOn" [required]="true" title="Updated On" requiredText="is required" type="date">
+      </rz-date-form-field>
+      <rz-lookup-form-field [data]="getComprasResult" property="comprasId" [required]="false" textProperty="CodigoCupon" title="Compra" valueProperty="Id" placeholder="Choose Compra" requiredText="is required" type="lookup">
+      </rz-lookup-form-field>
+      <rz-lookup-form-field [data]="getPagosResult" property="pagosId" [required]="false" textProperty="Id" title="Pago" valueProperty="Id" placeholder="Choose Pago" requiredText="is required" type="lookup">
+      </rz-lookup-form-field>
+    </rz-form>
+  </div>
+</div>

@@ -1,0 +1,165 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "${detallecompra}",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to update DetalleCompra",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.updateDetalleCompra",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${parameters.Id}"
+                      },
+                      {
+                        "name": "DetalleCompra",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "detalle-compras",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Impuesto",
+                  "required": false,
+                  "title": "Impuesto",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Precio",
+                  "required": true,
+                  "title": "Precio",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Quantity",
+                  "required": true,
+                  "title": "Quantity",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "descripcion",
+                  "required": false,
+                  "title": "Descripcion",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getComprasResult}",
+                  "property": "ComprasId",
+                  "required": true,
+                  "textProperty": "CodigoCupon",
+                  "title": "Compra",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Compra",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getProductosResult}",
+                  "property": "ProductoId",
+                  "required": true,
+                  "textProperty": "CodigoUp",
+                  "title": "Producto",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Producto",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getDetalleCompraById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "detallecompra",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getCompras",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getComprasResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getProductos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getProductosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Detalle Compra",
+  "access": [
+    "Authenticated"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to create new Departamento!",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.createDepartamento",
+                    "parameters": [
+                      {
+                        "name": "Departamento",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "departamentos",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Nombre",
+                  "required": false,
+                  "title": "Nombre",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "codigodpto",
+                  "required": true,
+                  "title": "Codigodpto",
+                  "type": "integer",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": []
+  },
+  "name": "Add Departamento",
+  "access": [
+    "Authenticated"
+  ]
+}

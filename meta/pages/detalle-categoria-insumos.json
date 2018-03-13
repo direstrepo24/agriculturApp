@@ -1,0 +1,192 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "name": "grid0",
+              "allowDelete": true,
+              "allowAdd": true,
+              "allowFiltering": true,
+              "allowMultiSorting": false,
+              "allowPaging": true,
+              "allowSorting": true,
+              "count": "${getDetalleCategoriaInsumosCount}",
+              "data": "${getDetalleCategoriaInsumosResult}",
+              "events": {
+                "loadData": [
+                  {
+                    "name": "agriculturebd.getDetalleCategoriaInsumos",
+                    "parameters": [
+                      {
+                        "name": "$top",
+                        "value": "this.grid0.allowPaging ? event.top : null"
+                      },
+                      {
+                        "name": "$skip",
+                        "value": "this.grid0.allowPaging ? event.skip : null"
+                      },
+                      {
+                        "name": "$expand",
+                        "value": "CategoriaInsumo"
+                      },
+                      {
+                        "name": "$count",
+                        "value": "this.grid0.allowPaging"
+                      },
+                      {
+                        "name": "$filter",
+                        "value": "${event.filter}"
+                      },
+                      {
+                        "name": "$orderby",
+                        "value": "${event.orderby}"
+                      },
+                      {
+                        "name": "$expand",
+                        "value": "CategoriaInsumo"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "name": "getDetalleCategoriaInsumosResult",
+                        "type": "set",
+                        "value": "${result.value}"
+                      },
+                      {
+                        "name": "getDetalleCategoriaInsumosCount",
+                        "type": "set",
+                        "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
+                "delete": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to delete DetalleCategoriaInsumo",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.deleteDetalleCategoriaInsumo",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${event.Id}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "detail": "DetalleCategoriaInsumo deleted!",
+                        "severity": "success",
+                        "summary": "Success",
+                        "type": "notify"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
+                "add": [
+                  {
+                    "path": "add-detalle-categoria-insumo",
+                    "type": "popup"
+                  }
+                ],
+                "rowSelect": [
+                  {
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${event.Id}"
+                      }
+                    ],
+                    "path": "edit-detalle-categoria-insumo",
+                    "type": "popup"
+                  }
+                ]
+              },
+              "title": "",
+              "columns": [
+                {
+                  "property": "Categoria_InsumoId",
+                  "sortProperty": "CategoriaInsumo.Nombre",
+                  "filterProperty": "CategoriaInsumo.Nombre",
+                  "template": "${data.CategoriaInsumo?.Nombre}",
+                  "title": "Categoria Insumo",
+                  "type": "integer"
+                },
+                {
+                  "property": "Descripcion",
+                  "title": "Descripcion",
+                  "type": "string"
+                },
+                {
+                  "property": "Id",
+                  "title": "Id",
+                  "type": "integer"
+                },
+                {
+                  "property": "Letra",
+                  "title": "Letra",
+                  "type": "string"
+                }
+              ],
+              "type": "grid",
+              "emptyText": "No records to display."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getDetalleCategoriaInsumos",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+          },
+          {
+            "name": "$skip",
+            "value": "this.grid0.allowPaging ? 0 : null"
+          },
+          {
+            "name": "$count",
+            "value": "this.grid0.allowPaging"
+          },
+          {
+            "name": "$expand",
+            "value": "CategoriaInsumo"
+          }
+        ],
+        "then": [
+          {
+            "name": "getDetalleCategoriaInsumosResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getDetalleCategoriaInsumosCount",
+            "type": "set",
+            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Detalle Categoria Insumos",
+  "access": [
+    "Authenticated"
+  ]
+}

@@ -1,0 +1,30 @@
+<div [ngStyle]="{'height':'45px','width':'632px'}" class="row">
+  <div class="col-md-12" [ngStyle]="{'height':'46px'}">
+    <rz-label #metodoPago [style]="{'width':'112.9375px'}" text="Metodo Pago">
+    </rz-label>
+    <rz-dropdown #dropMetodoPago [data]="getMetodoPagosResult" placeholder="Seleccione Metodo de Pago" [style]="{'height':'35px','width':'456px'}" textProperty="Nombre" valueProperty="Id" name="dropMetodoPago" (change)="dropMetodoPagoChange($event)">
+    </rz-dropdown>
+  </div>
+</div>
+<rz-form #form0 [style]="{'height':'617px','width':'789px'}" submitText="Register" (cancel)="form0Cancel($event)" (submit)="form0Submit($event)">
+  <rz-lookup-form-field [data]="DetallesMetPagos" [disabled]="false" placeholder="Seleccione Detalle Método Pago" property="DetalleMetodopagoId" requiredText="is required" textProperty="Nombre" title="Detalle Metodo Pago" valueProperty="Id" type="lookup">
+  </rz-lookup-form-field>
+  <rz-string-form-field placeholder="Digite número Cuenta" property="NroCuenta" title="Número Cuenta" requiredText="is required" type="string">
+  </rz-string-form-field>
+  <rz-string-form-field property="Email" [required]="true" requiredText="is required" title="Email" type="string">
+  </rz-string-form-field>
+  <rz-password-form-field property="Password" [required]="true" requiredText="is required" title="Password" type="password">
+  </rz-password-form-field>
+  <rz-password-form-field compare="Password" property="ConfirmPassword" [required]="true" requiredText="is required" title="Confirm password" type="password">
+  </rz-password-form-field>
+  <rz-lookup-form-field [data]="getRolsResult" placeholder="Seleccione tipo de usuario" property="Tipouser" [required]="true" requiredText="is required" textProperty="Nombre" title="Rol o Tipo " valueProperty="Id" type="lookup">
+  </rz-lookup-form-field>
+  <rz-string-form-field placeholder="Ingrese su telefono movil" property="PhoneNumber" [required]="true" requiredText="is required" title="Telefono móvil" type="string">
+  </rz-string-form-field>
+  <rz-string-form-field placeholder="Ingrese su Nombre" property="Nombre" title="Nombre" requiredText="is required" type="string">
+  </rz-string-form-field>
+  <rz-string-form-field property="Apellido" title="Apellidos" requiredText="is required" type="string">
+  </rz-string-form-field>
+  <rz-string-form-field property="Identification" title="Identificacion" requiredText="is required" type="string">
+  </rz-string-form-field>
+</rz-form>

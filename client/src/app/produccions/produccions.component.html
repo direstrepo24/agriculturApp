@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-grid #grid0 [allowDelete]="true" [allowAdd]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [count]="getProduccionsCount" [data]="getProduccionsResult" emptyText="No records to display." (loadData)="grid0LoadData($event)" (delete)="grid0Delete($event)" (add)="grid0Add($event)" (rowSelect)="grid0RowSelect($event)">
+      <rz-grid-column format="int64" property="CultivoId" sortProperty="Cultivo.Descripcion" filterProperty="Cultivo.Descripcion" title="Cultivo" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Cultivo?.Descripcion}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="date-time" property="FechaFin" title="Fecha Fin" type="string">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.FechaFin | utcDate}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="date-time" property="FechaInicio" title="Fecha Inicio" type="string">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.FechaInicio | utcDate}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="Id" title="Id" type="integer">
+      </rz-grid-column>
+      <rz-grid-column format="decimal" property="produccionEstimada" title="Produccion Estimada" type="number">
+      </rz-grid-column>
+      <rz-grid-column property="unidadMedidaId" sortProperty="UnidadMedida.Descripcion" filterProperty="UnidadMedida.Descripcion" title="Unidad Medida" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.UnidadMedida?.Descripcion}}
+        </ng-template>
+      </rz-grid-column>
+    </rz-grid>
+  </div>
+</div>

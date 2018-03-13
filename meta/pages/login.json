@@ -1,0 +1,64 @@
+{
+  "access": [
+    "Everybody"
+  ],
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "events": {
+                "login": [
+                  {
+                    "name": "Security.login",
+                    "parameters": [
+                      {
+                        "name": "username",
+                        "value": "${event.username}"
+                      },
+                      {
+                        "name": "password",
+                        "value": "${event.password}"
+                      }
+                    ],
+                    "type": "invoke",
+                    "error": [
+                      {
+                        "detail": "${result.error.message}",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ]
+                  }
+                ],
+                "register": [
+                  {
+                    "path": "register-user",
+                    "type": "popup"
+                  }
+                ]
+              },
+              "name": "login0",
+              "type": "login",
+              "loginText": "Login",
+              "registerText": "Register",
+              "userText": "Username",
+              "userRequired": "Username is required",
+              "passwordText": "Password",
+              "passwordRequired": "Password is required"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": []
+  },
+  "name": "Login"
+}

@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-form #form0 [data]="foto" (cancel)="form0Cancel($event)" (submit)="form0Submit($event)">
+      <rz-string-form-field property="Descripcion" [required]="false" title="Descripcion" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-date-form-field property="FechaCreacion" [required]="true" title="Fecha Creacion" requiredText="is required" type="date">
+      </rz-date-form-field>
+      <rz-string-form-field property="Hora" [required]="false" title="Hora" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-integer-form-field property="Id" [required]="true" title="Id" requiredText="is required" type="integer">
+      </rz-integer-form-field>
+      <rz-string-form-field property="Ruta" [required]="false" title="Ruta" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-string-form-field property="Titulo" [required]="false" title="Titulo" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-lookup-form-field [data]="getEnfermedadesResult" property="EnfermedadesId" [required]="true" textProperty="Codigo" title="Enfermedade" valueProperty="Id" placeholder="Choose Enfermedade" requiredText="is required" type="lookup">
+      </rz-lookup-form-field>
+    </rz-form>
+  </div>
+</div>

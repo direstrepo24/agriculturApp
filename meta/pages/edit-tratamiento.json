@@ -1,0 +1,186 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "${tratamiento}",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to update Tratamiento",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.updateTratamiento",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${parameters.Id}"
+                      },
+                      {
+                        "name": "Tratamiento",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "tratamientos",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Desc_Aplicacion",
+                  "required": false,
+                  "title": "Desc Aplicacion",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Desc_Formulacion",
+                  "required": false,
+                  "title": "Desc Formulacion",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "IngredienteActivo",
+                  "required": false,
+                  "title": "Ingrediente Activo",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Modo_Accion",
+                  "required": false,
+                  "title": "Modo Accion",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Nombre_Comercial",
+                  "required": false,
+                  "title": "Nombre Comercial",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "precioAproximado",
+                  "required": true,
+                  "title": "Precio Aproximado",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "proveedor",
+                  "required": false,
+                  "title": "Proveedor",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getCategoriaInsumosResult}",
+                  "property": "Categoria_InsumoId",
+                  "required": true,
+                  "textProperty": "Nombre",
+                  "title": "Categoria Insumo",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose CategoriaInsumo",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getInsumosResult}",
+                  "property": "InsumoId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Insumo",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Insumo",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getTratamientoById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tratamiento",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getCategoriaInsumos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getCategoriaInsumosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getInsumos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getInsumosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Tratamiento",
+  "access": [
+    "Authenticated"
+  ]
+}

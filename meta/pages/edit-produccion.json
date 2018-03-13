@@ -1,0 +1,158 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "${produccion}",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to update Produccion",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.updateProduccion",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${parameters.Id}"
+                      },
+                      {
+                        "name": "Produccion",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "produccions",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "FechaFin",
+                  "required": true,
+                  "title": "Fecha Fin",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "FechaInicio",
+                  "required": true,
+                  "title": "Fecha Inicio",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "produccionEstimada",
+                  "required": true,
+                  "title": "Produccion Estimada",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getCultivosResult}",
+                  "property": "CultivoId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Cultivo",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Cultivo",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getUnidadMedidasResult}",
+                  "property": "unidadMedidaId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Unidad Medida",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose UnidadMedida",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getProduccionById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "produccion",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getCultivos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getCultivosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getUnidadMedidas",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getUnidadMedidasResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Produccion",
+  "access": [
+    "Authenticated"
+  ]
+}

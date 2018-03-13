@@ -1,0 +1,7797 @@
+{
+  "basePath": "/odata/agriculturebd",
+  "definitions": {
+    "Calidad": {
+      "properties": {
+        "Descripcion": {
+          "type": "string",
+          "x-key": false
+        },
+        "DetalleOferta": {
+          "items": {
+            "$ref": "#/definitions/DetalleOfertum"
+          },
+          "type": "array"
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Calidad",
+              "name": "Productos",
+              "type": "Producto"
+            },
+            {
+              "inversePropertyName": "Calidad",
+              "name": "DetalleOferta",
+              "type": "DetalleOfertum"
+            }
+          ]
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "Productos": {
+          "items": {
+            "$ref": "#/definitions/Producto"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "Id"
+      ],
+      "resource": "Calidads",
+      "x-table": "agriculturebd.Calidad"
+    },
+    "CategoriaInsumo": {
+      "properties": {
+        "DetalleCategoriaInsumos": {
+          "items": {
+            "$ref": "#/definitions/DetalleCategoriaInsumo"
+          },
+          "type": "array"
+        },
+        "Id": {
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "CategoriaInsumo",
+              "name": "DetalleCategoriaInsumos",
+              "type": "DetalleCategoriaInsumo"
+            },
+            {
+              "inversePropertyName": "CategoriaInsumo",
+              "name": "Tratamientos",
+              "type": "Tratamiento"
+            }
+          ]
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "NombreColor": {
+          "type": "string",
+          "x-key": false
+        },
+        "Tratamientos": {
+          "items": {
+            "$ref": "#/definitions/Tratamiento"
+          },
+          "type": "array"
+        },
+        "codigoColor": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id"
+      ],
+      "resource": "CategoriaInsumos",
+      "x-table": "agriculturebd.Categoria_Insumo"
+    },
+    "Categorium": {
+      "properties": {
+        "Descripcion": {
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Categorium",
+              "name": "Productos",
+              "type": "Producto"
+            },
+            {
+              "inversePropertyName": "Categorium",
+              "name": "ProductCategoria",
+              "type": "ProductCategorium"
+            }
+          ]
+        },
+        "Imagen": {
+          "type": "string",
+          "x-key": false
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "ProductCategoria": {
+          "items": {
+            "$ref": "#/definitions/ProductCategorium"
+          },
+          "type": "array"
+        },
+        "Productos": {
+          "items": {
+            "$ref": "#/definitions/Producto"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "Id"
+      ],
+      "resource": "Categoria",
+      "x-table": "agriculturebd.Categoria"
+    },
+    "Ciudad": {
+      "properties": {
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Ciudad",
+              "name": "UnidadProductivas",
+              "type": "UnidadProductiva"
+            }
+          ]
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "UnidadProductivas": {
+          "items": {
+            "$ref": "#/definitions/UnidadProductiva"
+          },
+          "type": "array"
+        },
+        "departmentoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Departamento",
+            "parentEntityType": "Departamento",
+            "parentTable": "Departamentos",
+            "principalKey": "Id",
+            "textProperty": "Nombre",
+            "type": "Departamento"
+          },
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "departmentoId"
+      ],
+      "resource": "Ciudads",
+      "x-table": "agriculturebd.Ciudad"
+    },
+    "Compra": {
+      "properties": {
+        "CodigoCupon": {
+          "type": "string",
+          "x-key": false
+        },
+        "CompraStatus": {
+          "type": "integer",
+          "x-key": false
+        },
+        "ComprasPagos": {
+          "items": {
+            "$ref": "#/definitions/ComprasPago"
+          },
+          "type": "array"
+        },
+        "CreatedOn": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "Descuento": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "DetalleCompras": {
+          "items": {
+            "$ref": "#/definitions/DetalleCompra"
+          },
+          "type": "array"
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Compra",
+              "name": "ComprasPagos",
+              "type": "ComprasPago"
+            },
+            {
+              "inversePropertyName": "Compra",
+              "name": "DetalleCompras",
+              "type": "DetalleCompra"
+            }
+          ]
+        },
+        "Impuesto": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "MetodoPago": {
+          "type": "string",
+          "x-key": false
+        },
+        "TotalCompra": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "UpdatedOn": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "UsuarioId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Usuario",
+            "parentEntityType": "Usuario",
+            "parentTable": "Usuarios",
+            "principalKey": "Id",
+            "textProperty": "Apellidos",
+            "type": "Usuario"
+          },
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "CompraStatus",
+        "CreatedOn",
+        "Descuento",
+        "Impuesto",
+        "TotalCompra",
+        "UpdatedOn",
+        "UsuarioId"
+      ],
+      "resource": "Compras",
+      "x-table": "agriculturebd.Compras"
+    },
+    "ComprasPago": {
+      "properties": {
+        "CompraId": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": false
+        },
+        "CreatedOn": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true
+        },
+        "PagoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": false
+        },
+        "UpdatedOn": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "comprasId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Compra",
+            "parentEntityType": "Compra",
+            "parentTable": "Compras",
+            "principalKey": "Id",
+            "textProperty": "CodigoCupon",
+            "type": "Compra"
+          },
+          "x-key": false
+        },
+        "pagosId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Pago",
+            "parentEntityType": "Pago",
+            "parentTable": "Pagos",
+            "principalKey": "Id",
+            "textProperty": "Id",
+            "type": "Pago"
+          },
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "CompraId",
+        "CreatedOn",
+        "PagoId",
+        "UpdatedOn"
+      ],
+      "resource": "ComprasPagos",
+      "x-table": "agriculturebd.ComprasPagos"
+    },
+    "ControlPlaga": {
+      "properties": {
+        "CultivoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Cultivo",
+            "parentEntityType": "Cultivo",
+            "parentTable": "Cultivos",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "Cultivo"
+          },
+          "x-key": false
+        },
+        "Dosis": {
+          "format": "float",
+          "type": "number",
+          "x-key": false
+        },
+        "EnfermedadesId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Enfermedade",
+            "parentEntityType": "Enfermedade",
+            "parentTable": "Enfermedades",
+            "principalKey": "Id",
+            "textProperty": "Codigo",
+            "type": "Enfermedade"
+          },
+          "x-key": false
+        },
+        "Fecha_aplicacion": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true
+        },
+        "TratamientoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Tratamiento",
+            "parentEntityType": "Tratamiento",
+            "parentTable": "Tratamientos",
+            "principalKey": "Id",
+            "textProperty": "Desc_Aplicacion",
+            "type": "Tratamiento"
+          },
+          "x-key": false
+        },
+        "UnidadMedidaId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "UnidadMedida",
+            "parentEntityType": "UnidadMedida",
+            "parentTable": "UnidadMedidas",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "UnidadMedida"
+          },
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "CultivoId",
+        "Dosis",
+        "EnfermedadesId",
+        "Fecha_aplicacion",
+        "UnidadMedidaId"
+      ],
+      "resource": "ControlPlagas",
+      "x-table": "agriculturebd.ControlPlaga"
+    },
+    "Cultivo": {
+      "properties": {
+        "ControlPlagas": {
+          "items": {
+            "$ref": "#/definitions/ControlPlaga"
+          },
+          "type": "array"
+        },
+        "Descripcion": {
+          "type": "string",
+          "x-key": false
+        },
+        "DetalleTipoProductoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "DetalleTipoProducto",
+            "parentEntityType": "DetalleTipoProducto",
+            "parentTable": "DetalleTipoProductos",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "DetalleTipoProducto"
+          },
+          "x-key": false
+        },
+        "EstimadoCosecha": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "FechaFin": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "FechaIncio": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Cultivo",
+              "name": "ControlPlagas",
+              "type": "ControlPlaga"
+            },
+            {
+              "inversePropertyName": "Cultivo",
+              "name": "Produccions",
+              "type": "Produccion"
+            },
+            {
+              "inversePropertyName": "Cultivo",
+              "name": "Productos",
+              "type": "Producto"
+            }
+          ]
+        },
+        "LoteId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Lote",
+            "parentEntityType": "Lote",
+            "parentTable": "Lotes",
+            "principalKey": "Id",
+            "textProperty": "Codigo",
+            "type": "Lote"
+          },
+          "x-key": false
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "Produccions": {
+          "items": {
+            "$ref": "#/definitions/Produccion"
+          },
+          "type": "array"
+        },
+        "Productos": {
+          "items": {
+            "$ref": "#/definitions/Producto"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "Id",
+        "DetalleTipoProductoId",
+        "EstimadoCosecha",
+        "FechaFin",
+        "FechaIncio",
+        "LoteId"
+      ],
+      "resource": "Cultivos",
+      "x-table": "agriculturebd.Cultivo"
+    },
+    "Departamento": {
+      "properties": {
+        "Ciudads": {
+          "items": {
+            "$ref": "#/definitions/Ciudad"
+          },
+          "type": "array"
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Departamento",
+              "name": "Ciudads",
+              "type": "Ciudad"
+            }
+          ]
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "codigodpto": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "codigodpto"
+      ],
+      "resource": "Departamentos",
+      "x-table": "agriculturebd.Departamento"
+    },
+    "DetalleCategoriaInsumo": {
+      "properties": {
+        "Categoria_InsumoId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "CategoriaInsumo",
+            "parentEntityType": "CategoriaInsumo",
+            "parentTable": "Categoria_Insumos",
+            "principalKey": "Id",
+            "textProperty": "Nombre",
+            "type": "CategoriaInsumo"
+          },
+          "x-key": false
+        },
+        "Descripcion": {
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "type": "integer",
+          "x-key": true
+        },
+        "Letra": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "Letra"
+      ],
+      "resource": "DetalleCategoriaInsumos",
+      "x-table": "agriculturebd.DetalleCategoria_Insumo"
+    },
+    "DetalleCompra": {
+      "properties": {
+        "ComprasId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Compra",
+            "parentEntityType": "Compra",
+            "parentTable": "Compras",
+            "principalKey": "Id",
+            "textProperty": "CodigoCupon",
+            "type": "Compra"
+          },
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true
+        },
+        "Impuesto": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "Precio": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "ProductoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Producto",
+            "parentEntityType": "Producto",
+            "parentTable": "Productos",
+            "principalKey": "Id",
+            "textProperty": "CodigoUp",
+            "type": "Producto"
+          },
+          "x-key": false
+        },
+        "Quantity": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "descripcion": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "ComprasId",
+        "Precio",
+        "ProductoId",
+        "Quantity"
+      ],
+      "resource": "DetalleCompras",
+      "x-table": "agriculturebd.DetalleCompra"
+    },
+    "DetalleMetodopago": {
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "DetalleMetodopago",
+              "name": "Usuarios",
+              "type": "Usuario"
+            }
+          ]
+        },
+        "MetodoPagoId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "MetodoPago",
+            "parentEntityType": "MetodoPago",
+            "parentTable": "MetodoPagos",
+            "principalKey": "Id",
+            "textProperty": "Nombre",
+            "type": "MetodoPago"
+          },
+          "x-key": false
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "Usuarios": {
+          "items": {
+            "$ref": "#/definitions/Usuario"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "Id",
+        "MetodoPagoId"
+      ],
+      "resource": "DetalleMetodopagos",
+      "x-table": "agriculturebd.DetalleMetodopago"
+    },
+    "DetalleOfertum": {
+      "properties": {
+        "CalidadId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Calidad",
+            "parentEntityType": "Calidad",
+            "parentTable": "Calidads",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "Calidad"
+          },
+          "x-key": false
+        },
+        "Cantidad": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "Id": {
+          "type": "integer",
+          "x-key": true
+        },
+        "OfertasId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Oferta",
+            "parentEntityType": "Oferta",
+            "parentTable": "Ofertas",
+            "principalKey": "Id",
+            "textProperty": "Id",
+            "type": "Oferta"
+          },
+          "x-key": false
+        },
+        "ProductoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Producto",
+            "parentEntityType": "Producto",
+            "parentTable": "Productos",
+            "principalKey": "Id",
+            "textProperty": "CodigoUp",
+            "type": "Producto"
+          },
+          "x-key": false
+        },
+        "UnidadMedidaId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "UnidadMedida",
+            "parentEntityType": "UnidadMedida",
+            "parentTable": "UnidadMedidas",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "UnidadMedida"
+          },
+          "x-key": false
+        },
+        "Valor_Oferta": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "Valor_minimo": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "Valor_transaccion": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "CalidadId",
+        "Cantidad",
+        "ProductoId",
+        "UnidadMedidaId",
+        "Valor_Oferta"
+      ],
+      "resource": "DetalleOferta",
+      "x-table": "agriculturebd.DetalleOferta"
+    },
+    "DetalleTipoProducto": {
+      "properties": {
+        "Cultivos": {
+          "items": {
+            "$ref": "#/definitions/Cultivo"
+          },
+          "type": "array"
+        },
+        "Descripcion": {
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "DetalleTipoProducto",
+              "name": "Cultivos",
+              "type": "Cultivo"
+            }
+          ]
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "TipoProductoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "TipoProducto",
+            "parentEntityType": "TipoProducto",
+            "parentTable": "TipoProductos",
+            "principalKey": "Id",
+            "textProperty": "Nombre",
+            "type": "TipoProducto"
+          },
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "TipoProductoId"
+      ],
+      "resource": "DetalleTipoProductos",
+      "x-table": "agriculturebd.DetalleTipoProducto"
+    },
+    "Enfermedade": {
+      "properties": {
+        "Codigo": {
+          "type": "string",
+          "x-key": false
+        },
+        "ControlPlagas": {
+          "items": {
+            "$ref": "#/definitions/ControlPlaga"
+          },
+          "type": "array"
+        },
+        "Descripcion": {
+          "type": "string",
+          "x-key": false
+        },
+        "Fotos": {
+          "items": {
+            "$ref": "#/definitions/Foto"
+          },
+          "type": "array"
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Enfermedade",
+              "name": "Fotos",
+              "type": "Foto"
+            },
+            {
+              "inversePropertyName": "Enfermedade",
+              "name": "ControlPlagas",
+              "type": "ControlPlaga"
+            }
+          ]
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "NombreCientifico": {
+          "type": "string",
+          "x-key": false
+        },
+        "TipoProductoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "TipoProducto",
+            "parentEntityType": "TipoProducto",
+            "parentTable": "TipoProductos",
+            "principalKey": "Id",
+            "textProperty": "Nombre",
+            "type": "TipoProducto"
+          },
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "TipoProductoId"
+      ],
+      "resource": "Enfermedades",
+      "x-table": "agriculturebd.Enfermedades"
+    },
+    "Equipo": {
+      "properties": {
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Equipo",
+              "name": "Receta",
+              "type": "Recetum"
+            }
+          ]
+        },
+        "Marca": {
+          "type": "string",
+          "x-key": false
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "Receta": {
+          "items": {
+            "$ref": "#/definitions/Recetum"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "Id"
+      ],
+      "resource": "Equipos",
+      "x-table": "agriculturebd.Equipo"
+    },
+    "Foto": {
+      "properties": {
+        "Descripcion": {
+          "type": "string",
+          "x-key": false
+        },
+        "EnfermedadesId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Enfermedade",
+            "parentEntityType": "Enfermedade",
+            "parentTable": "Enfermedades",
+            "principalKey": "Id",
+            "textProperty": "Codigo",
+            "type": "Enfermedade"
+          },
+          "x-key": false
+        },
+        "FechaCreacion": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "Hora": {
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true
+        },
+        "Ruta": {
+          "type": "string",
+          "x-key": false
+        },
+        "Titulo": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "EnfermedadesId",
+        "FechaCreacion"
+      ],
+      "resource": "Fotos",
+      "x-table": "agriculturebd.Foto"
+    },
+    "Insumo": {
+      "properties": {
+        "Descripcion": {
+          "type": "string",
+          "x-key": false
+        },
+        "Fecha_Vencimiento": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Insumo",
+              "name": "Receta",
+              "type": "Recetum"
+            },
+            {
+              "inversePropertyName": "Insumo",
+              "name": "Tratamientos",
+              "type": "Tratamiento"
+            }
+          ]
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "Receta": {
+          "items": {
+            "$ref": "#/definitions/Recetum"
+          },
+          "type": "array"
+        },
+        "Tipo_InsumoId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "TipoInsumo",
+            "parentEntityType": "TipoInsumo",
+            "parentTable": "Tipo_Insumos",
+            "principalKey": "Id",
+            "textProperty": "Nombre",
+            "type": "TipoInsumo"
+          },
+          "x-key": false
+        },
+        "Tratamientos": {
+          "items": {
+            "$ref": "#/definitions/Tratamiento"
+          },
+          "type": "array"
+        },
+        "laboratorioId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Laboratorio",
+            "parentEntityType": "Laboratorio",
+            "parentTable": "Laboratorios",
+            "principalKey": "Id",
+            "textProperty": "Nombre",
+            "type": "Laboratorio"
+          },
+          "x-key": false
+        },
+        "lote_laboratorio": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "Fecha_Vencimiento",
+        "Tipo_InsumoId",
+        "laboratorioId"
+      ],
+      "resource": "Insumos",
+      "x-table": "agriculturebd.Insumo"
+    },
+    "Laboratorio": {
+      "properties": {
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Laboratorio",
+              "name": "Insumos",
+              "type": "Insumo"
+            }
+          ]
+        },
+        "Insumos": {
+          "items": {
+            "$ref": "#/definitions/Insumo"
+          },
+          "type": "array"
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id"
+      ],
+      "resource": "Laboratorios",
+      "x-table": "agriculturebd.Laboratorio"
+    },
+    "LocalizacionUp": {
+      "properties": {
+        "Barrio": {
+          "type": "string",
+          "x-key": false
+        },
+        "Coordenadas": {
+          "type": "string",
+          "x-key": false
+        },
+        "Direccion": {
+          "type": "string",
+          "x-key": false
+        },
+        "DireccionAproximadaGps": {
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true
+        },
+        "Latitud": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "Localidad": {
+          "type": "string",
+          "x-key": false
+        },
+        "Longitud": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "ReferenciaLocalizacion": {
+          "type": "string",
+          "x-key": false
+        },
+        "Sector": {
+          "type": "string",
+          "x-key": false
+        },
+        "UnidadProductivaId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "UnidadProductiva",
+            "parentEntityType": "UnidadProductiva",
+            "parentTable": "UnidadProductivas",
+            "principalKey": "Id",
+            "textProperty": "Codigo",
+            "type": "UnidadProductiva"
+          },
+          "x-key": false
+        },
+        "vereda": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "Latitud",
+        "Longitud",
+        "UnidadProductivaId"
+      ],
+      "resource": "LocalizacionUps",
+      "x-table": "agriculturebd.LocalizacionUp"
+    },
+    "Lote": {
+      "properties": {
+        "Area": {
+          "format": "float",
+          "type": "number",
+          "x-key": false
+        },
+        "Codigo": {
+          "type": "string",
+          "x-key": false
+        },
+        "Cultivos": {
+          "items": {
+            "$ref": "#/definitions/Cultivo"
+          },
+          "type": "array"
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Lote",
+              "name": "Cultivos",
+              "type": "Cultivo"
+            }
+          ]
+        },
+        "Localizacion": {
+          "type": "string",
+          "x-key": false
+        },
+        "Localizacion_Poligono": {
+          "type": "string",
+          "x-key": false
+        },
+        "UnidadMedidaId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "UnidadMedida",
+            "parentEntityType": "UnidadMedida",
+            "parentTable": "UnidadMedidas",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "UnidadMedida"
+          },
+          "x-key": false
+        },
+        "unidadproductivaId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "UnidadProductiva",
+            "parentEntityType": "UnidadProductiva",
+            "parentTable": "UnidadProductivas",
+            "principalKey": "Id",
+            "textProperty": "Codigo",
+            "type": "UnidadProductiva"
+          },
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "Area",
+        "UnidadMedidaId",
+        "unidadproductivaId"
+      ],
+      "resource": "Lotes",
+      "x-table": "agriculturebd.Lote"
+    },
+    "MetodoPago": {
+      "properties": {
+        "DetalleMetodopagos": {
+          "items": {
+            "$ref": "#/definitions/DetalleMetodopago"
+          },
+          "type": "array"
+        },
+        "Id": {
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "MetodoPago",
+              "name": "DetalleMetodopagos",
+              "type": "DetalleMetodopago"
+            },
+            {
+              "inversePropertyName": "MetodoPago",
+              "name": "Pagos",
+              "type": "Pago"
+            }
+          ]
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "Pagos": {
+          "items": {
+            "$ref": "#/definitions/Pago"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "Id"
+      ],
+      "resource": "MetodoPagos",
+      "x-table": "agriculturebd.MetodoPago"
+    },
+    "Notificacione": {
+      "properties": {
+        "EstadoNotif": {
+          "type": "string",
+          "x-key": false
+        },
+        "Fecha": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true
+        },
+        "Mensaje": {
+          "type": "string",
+          "x-key": false
+        },
+        "TypeNotificationId1": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "TypeNotification",
+            "parentEntityType": "TypeNotification",
+            "parentTable": "TypeNotifications",
+            "principalKey": "Id",
+            "textProperty": "Nombre",
+            "type": "TypeNotification"
+          },
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "Fecha"
+      ],
+      "resource": "Notificaciones",
+      "x-table": "agriculturebd.Notificaciones"
+    },
+    "Oferta": {
+      "properties": {
+        "CreatedOn": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "DetalleOferta": {
+          "items": {
+            "$ref": "#/definitions/DetalleOfertum"
+          },
+          "type": "array"
+        },
+        "EstadoOferta": {
+          "type": "integer",
+          "x-key": false
+        },
+        "EstadoOfertaId": {
+          "type": "integer",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Oferta",
+              "name": "DetalleOferta",
+              "type": "DetalleOfertum"
+            }
+          ]
+        },
+        "UpdatedOn": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "UsuarioId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Usuario",
+            "parentEntityType": "Usuario",
+            "parentTable": "Usuarios",
+            "principalKey": "Id",
+            "textProperty": "Apellidos",
+            "type": "Usuario"
+          },
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "CreatedOn",
+        "EstadoOferta",
+        "EstadoOfertaId",
+        "UpdatedOn",
+        "UsuarioId"
+      ],
+      "resource": "Oferta",
+      "x-table": "agriculturebd.Ofertas"
+    },
+    "Pago": {
+      "properties": {
+        "ComprasPagos": {
+          "items": {
+            "$ref": "#/definitions/ComprasPago"
+          },
+          "type": "array"
+        },
+        "CreatedOn": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Pago",
+              "name": "ComprasPagos",
+              "type": "ComprasPago"
+            }
+          ]
+        },
+        "MetodoPagoId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "MetodoPago",
+            "parentEntityType": "MetodoPago",
+            "parentTable": "MetodoPagos",
+            "principalKey": "Id",
+            "textProperty": "Nombre",
+            "type": "MetodoPago"
+          },
+          "x-key": false
+        },
+        "Monto": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "Saldo": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "UpdatedOn": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "CreatedOn",
+        "MetodoPagoId",
+        "Monto",
+        "UpdatedOn"
+      ],
+      "resource": "Pagos",
+      "x-table": "agriculturebd.Pagos"
+    },
+    "Produccion": {
+      "properties": {
+        "CultivoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Cultivo",
+            "parentEntityType": "Cultivo",
+            "parentTable": "Cultivos",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "Cultivo"
+          },
+          "x-key": false
+        },
+        "FechaFin": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "FechaInicio": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true
+        },
+        "produccionEstimada": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "unidadMedidaId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "UnidadMedida",
+            "parentEntityType": "UnidadMedida",
+            "parentTable": "UnidadMedidas",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "UnidadMedida"
+          },
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "CultivoId",
+        "FechaFin",
+        "FechaInicio",
+        "produccionEstimada",
+        "unidadMedidaId"
+      ],
+      "resource": "Produccions",
+      "x-table": "agriculturebd.Produccion"
+    },
+    "ProductCategorium": {
+      "properties": {
+        "CategoriaId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Categorium",
+            "parentEntityType": "Categorium",
+            "parentTable": "Categoria",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "Categorium"
+          },
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true
+        },
+        "ProductoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Producto",
+            "parentEntityType": "Producto",
+            "parentTable": "Productos",
+            "principalKey": "Id",
+            "textProperty": "CodigoUp",
+            "type": "Producto"
+          },
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "CategoriaId",
+        "ProductoId"
+      ],
+      "resource": "ProductCategoria",
+      "x-table": "agriculturebd.ProductCategoria"
+    },
+    "Producto": {
+      "properties": {
+        "CalidadId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Calidad",
+            "parentEntityType": "Calidad",
+            "parentTable": "Calidads",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "Calidad"
+          },
+          "x-key": false
+        },
+        "CategoriaId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Categorium",
+            "parentEntityType": "Categorium",
+            "parentTable": "Categoria",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "Categorium"
+          },
+          "x-key": false
+        },
+        "CodigoUp": {
+          "type": "string",
+          "x-key": false
+        },
+        "Descripcion": {
+          "type": "string",
+          "x-key": false
+        },
+        "DetalleCompras": {
+          "items": {
+            "$ref": "#/definitions/DetalleCompra"
+          },
+          "type": "array"
+        },
+        "DetalleOferta": {
+          "items": {
+            "$ref": "#/definitions/DetalleOfertum"
+          },
+          "type": "array"
+        },
+        "FechaLimiteDisponibilidad": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Producto",
+              "name": "DetalleCompras",
+              "type": "DetalleCompra"
+            },
+            {
+              "inversePropertyName": "Producto",
+              "name": "DetalleOferta",
+              "type": "DetalleOfertum"
+            },
+            {
+              "inversePropertyName": "Producto",
+              "name": "ProductCategoria",
+              "type": "ProductCategorium"
+            }
+          ]
+        },
+        "Imagen": {
+          "type": "string",
+          "x-key": false
+        },
+        "IsEnable": {
+          "type": "boolean",
+          "x-key": false
+        },
+        "Precio": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "PrecioSpecial": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "ProductCategoria": {
+          "items": {
+            "$ref": "#/definitions/ProductCategorium"
+          },
+          "type": "array"
+        },
+        "Stock": {
+          "format": "float",
+          "type": "number",
+          "x-key": false
+        },
+        "cultivoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Cultivo",
+            "parentEntityType": "Cultivo",
+            "parentTable": "Cultivos",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "Cultivo"
+          },
+          "x-key": false
+        },
+        "nombre": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "CalidadId",
+        "CategoriaId",
+        "FechaLimiteDisponibilidad",
+        "IsEnable",
+        "Precio",
+        "Stock",
+        "cultivoId"
+      ],
+      "resource": "Productos",
+      "x-table": "agriculturebd.Producto"
+    },
+    "Recetum": {
+      "properties": {
+        "Dosis": {
+          "format": "float",
+          "type": "number",
+          "x-key": false
+        },
+        "EquipoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Equipo",
+            "parentEntityType": "Equipo",
+            "parentTable": "Equipos",
+            "principalKey": "Id",
+            "textProperty": "Marca",
+            "type": "Equipo"
+          },
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true
+        },
+        "InsumoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Insumo",
+            "parentEntityType": "Insumo",
+            "parentTable": "Insumos",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "Insumo"
+          },
+          "x-key": false
+        },
+        "Modo_uso": {
+          "type": "string",
+          "x-key": false
+        },
+        "UnidadId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "UnidadMedida",
+            "parentEntityType": "UnidadMedida",
+            "parentTable": "UnidadMedidas",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "UnidadMedida"
+          },
+          "x-key": false
+        },
+        "nombre": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "Dosis",
+        "EquipoId",
+        "InsumoId",
+        "UnidadId"
+      ],
+      "resource": "Receta",
+      "x-table": "agriculturebd.Receta"
+    },
+    "Rol": {
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Rol",
+              "name": "Usuarios",
+              "type": "Usuario"
+            }
+          ]
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "Usuarios": {
+          "items": {
+            "$ref": "#/definitions/Usuario"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "Id"
+      ],
+      "resource": "Rols",
+      "x-table": "agriculturebd.Rol"
+    },
+    "TipoInsumo": {
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "TipoInsumo",
+              "name": "Insumos",
+              "type": "Insumo"
+            }
+          ]
+        },
+        "Insumos": {
+          "items": {
+            "$ref": "#/definitions/Insumo"
+          },
+          "type": "array"
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id"
+      ],
+      "resource": "TipoInsumos",
+      "x-table": "agriculturebd.Tipo_Insumo"
+    },
+    "TipoProducto": {
+      "properties": {
+        "DetalleTipoProductos": {
+          "items": {
+            "$ref": "#/definitions/DetalleTipoProducto"
+          },
+          "type": "array"
+        },
+        "Enfermedades": {
+          "items": {
+            "$ref": "#/definitions/Enfermedade"
+          },
+          "type": "array"
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "TipoProducto",
+              "name": "DetalleTipoProductos",
+              "type": "DetalleTipoProducto"
+            },
+            {
+              "inversePropertyName": "TipoProducto",
+              "name": "Enfermedades",
+              "type": "Enfermedade"
+            }
+          ]
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id"
+      ],
+      "resource": "TipoProductos",
+      "x-table": "agriculturebd.TipoProducto"
+    },
+    "Tratamiento": {
+      "properties": {
+        "Categoria_InsumoId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "CategoriaInsumo",
+            "parentEntityType": "CategoriaInsumo",
+            "parentTable": "Categoria_Insumos",
+            "principalKey": "Id",
+            "textProperty": "Nombre",
+            "type": "CategoriaInsumo"
+          },
+          "x-key": false
+        },
+        "ControlPlagas": {
+          "items": {
+            "$ref": "#/definitions/ControlPlaga"
+          },
+          "type": "array"
+        },
+        "Desc_Aplicacion": {
+          "type": "string",
+          "x-key": false
+        },
+        "Desc_Formulacion": {
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Tratamiento",
+              "name": "ControlPlagas",
+              "type": "ControlPlaga"
+            }
+          ]
+        },
+        "IngredienteActivo": {
+          "type": "string",
+          "x-key": false
+        },
+        "InsumoId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Insumo",
+            "parentEntityType": "Insumo",
+            "parentTable": "Insumos",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "Insumo"
+          },
+          "x-key": false
+        },
+        "Modo_Accion": {
+          "type": "string",
+          "x-key": false
+        },
+        "Nombre_Comercial": {
+          "type": "string",
+          "x-key": false
+        },
+        "precioAproximado": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "proveedor": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "Categoria_InsumoId",
+        "InsumoId",
+        "precioAproximado"
+      ],
+      "resource": "Tratamientos",
+      "x-table": "agriculturebd.Tratamiento"
+    },
+    "TypeNotification": {
+      "properties": {
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "TypeNotification",
+              "name": "Notificaciones",
+              "type": "Notificacione"
+            }
+          ]
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "Notificaciones": {
+          "items": {
+            "$ref": "#/definitions/Notificacione"
+          },
+          "type": "array"
+        },
+        "Sigla": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id"
+      ],
+      "resource": "TypeNotifications",
+      "x-table": "agriculturebd.TypeNotification"
+    },
+    "UnidadMedida": {
+      "properties": {
+        "ControlPlagas": {
+          "items": {
+            "$ref": "#/definitions/ControlPlaga"
+          },
+          "type": "array"
+        },
+        "Descripcion": {
+          "type": "string",
+          "x-key": false
+        },
+        "DetalleOferta": {
+          "items": {
+            "$ref": "#/definitions/DetalleOfertum"
+          },
+          "type": "array"
+        },
+        "Id": {
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "UnidadMedida",
+              "name": "Receta",
+              "type": "Recetum"
+            },
+            {
+              "inversePropertyName": "UnidadMedida",
+              "name": "UnidadProductivas",
+              "type": "UnidadProductiva"
+            },
+            {
+              "inversePropertyName": "UnidadMedida",
+              "name": "Lotes",
+              "type": "Lote"
+            },
+            {
+              "inversePropertyName": "UnidadMedida",
+              "name": "ControlPlagas",
+              "type": "ControlPlaga"
+            },
+            {
+              "inversePropertyName": "UnidadMedida",
+              "name": "Produccions",
+              "type": "Produccion"
+            },
+            {
+              "inversePropertyName": "UnidadMedida",
+              "name": "DetalleOferta",
+              "type": "DetalleOfertum"
+            }
+          ]
+        },
+        "Lotes": {
+          "items": {
+            "$ref": "#/definitions/Lote"
+          },
+          "type": "array"
+        },
+        "Produccions": {
+          "items": {
+            "$ref": "#/definitions/Produccion"
+          },
+          "type": "array"
+        },
+        "Receta": {
+          "items": {
+            "$ref": "#/definitions/Recetum"
+          },
+          "type": "array"
+        },
+        "Sigla": {
+          "type": "string",
+          "x-key": false
+        },
+        "UnidadProductivas": {
+          "items": {
+            "$ref": "#/definitions/UnidadProductiva"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "Id"
+      ],
+      "resource": "UnidadMedidas",
+      "x-table": "agriculturebd.UnidadMedida"
+    },
+    "UnidadProductiva": {
+      "properties": {
+        "Area": {
+          "format": "decimal",
+          "type": "number",
+          "x-key": false
+        },
+        "CiudadId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Ciudad",
+            "parentEntityType": "Ciudad",
+            "parentTable": "Ciudads",
+            "principalKey": "Id",
+            "textProperty": "Nombre",
+            "type": "Ciudad"
+          },
+          "x-key": false
+        },
+        "Codigo": {
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "UnidadProductiva",
+              "name": "LocalizacionUps",
+              "type": "LocalizacionUp"
+            },
+            {
+              "inversePropertyName": "UnidadProductiva",
+              "name": "Lotes",
+              "type": "Lote"
+            }
+          ]
+        },
+        "LocalizacionUps": {
+          "items": {
+            "$ref": "#/definitions/LocalizacionUp"
+          },
+          "type": "array"
+        },
+        "Lotes": {
+          "items": {
+            "$ref": "#/definitions/Lote"
+          },
+          "type": "array"
+        },
+        "UnidadMedidaId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "UnidadMedida",
+            "parentEntityType": "UnidadMedida",
+            "parentTable": "UnidadMedidas",
+            "principalKey": "Id",
+            "textProperty": "Descripcion",
+            "type": "UnidadMedida"
+          },
+          "x-key": false
+        },
+        "UsuarioId": {
+          "format": "int64",
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Usuario",
+            "parentEntityType": "Usuario",
+            "parentTable": "Usuarios",
+            "principalKey": "Id",
+            "textProperty": "Apellidos",
+            "type": "Usuario"
+          },
+          "x-key": false
+        },
+        "descripcion": {
+          "type": "string",
+          "x-key": false
+        },
+        "nombre": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "Area",
+        "CiudadId",
+        "UnidadMedidaId",
+        "UsuarioId"
+      ],
+      "resource": "UnidadProductivas",
+      "x-table": "agriculturebd.UnidadProductiva"
+    },
+    "Usuario": {
+      "properties": {
+        "Apellidos": {
+          "type": "string",
+          "x-key": false
+        },
+        "Compras": {
+          "items": {
+            "$ref": "#/definitions/Compra"
+          },
+          "type": "array"
+        },
+        "DetallemetodoPagoId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "DetalleMetodopago",
+            "parentEntityType": "DetalleMetodopago",
+            "parentTable": "DetalleMetodopagos",
+            "principalKey": "Id",
+            "textProperty": "Nombre",
+            "type": "DetalleMetodopago"
+          },
+          "x-key": false
+        },
+        "Email": {
+          "type": "string",
+          "x-key": false
+        },
+        "EmailConfirmed": {
+          "type": "boolean",
+          "x-key": false
+        },
+        "Estado": {
+          "type": "string",
+          "x-key": false
+        },
+        "FechaRegistro": {
+          "format": "date-time",
+          "type": "string",
+          "x-key": false
+        },
+        "Fotopefil": {
+          "type": "string",
+          "x-key": false
+        },
+        "Id": {
+          "format": "int64",
+          "type": "integer",
+          "x-key": true,
+          "x-navigation": [
+            {
+              "inversePropertyName": "Usuario",
+              "name": "Compras",
+              "type": "Compra"
+            },
+            {
+              "inversePropertyName": "Usuario",
+              "name": "Oferta",
+              "type": "Oferta"
+            },
+            {
+              "inversePropertyName": "Usuario",
+              "name": "UnidadProductivas",
+              "type": "UnidadProductiva"
+            }
+          ]
+        },
+        "Identificacion": {
+          "type": "string",
+          "x-key": false
+        },
+        "Nombre": {
+          "type": "string",
+          "x-key": false
+        },
+        "Nro_movil": {
+          "type": "string",
+          "x-key": false
+        },
+        "NumeroCuenta": {
+          "type": "string",
+          "x-key": false
+        },
+        "Oferta": {
+          "items": {
+            "$ref": "#/definitions/Oferta"
+          },
+          "type": "array"
+        },
+        "PhoneNumber": {
+          "type": "string",
+          "x-key": false
+        },
+        "PhoneNumberConfirmed": {
+          "type": "boolean",
+          "x-key": false
+        },
+        "RolId": {
+          "type": "integer",
+          "x-foreignKey": {
+            "name": "Rol",
+            "parentEntityType": "Rol",
+            "parentTable": "Rols",
+            "principalKey": "Id",
+            "textProperty": "Nombre",
+            "type": "Rol"
+          },
+          "x-key": false
+        },
+        "UnidadProductivas": {
+          "items": {
+            "$ref": "#/definitions/UnidadProductiva"
+          },
+          "type": "array"
+        },
+        "UserName": {
+          "type": "string",
+          "x-key": false
+        }
+      },
+      "required": [
+        "Id",
+        "DetallemetodoPagoId",
+        "EmailConfirmed",
+        "PhoneNumberConfirmed",
+        "RolId"
+      ],
+      "resource": "Usuarios",
+      "x-table": "agriculturebd.Usuario"
+    }
+  },
+  "host": "localhost:5000",
+  "info": {
+    "title": "agriculturebd",
+    "x-connector": "postgresql",
+    "x-type": "odata"
+  },
+  "paths": {
+    "/Calidads": {
+      "get": {
+        "operationId": "getCalidads",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Calidad"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCalidad",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Calidad",
+            "schema": {
+              "$ref": "#/definitions/Calidad"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Calidad"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Calidads({Id})": {
+      "delete": {
+        "operationId": "deleteCalidad",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getCalidadById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Calidad"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateCalidad",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Calidad",
+            "schema": {
+              "$ref": "#/definitions/Calidad"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Categoria": {
+      "get": {
+        "operationId": "getCategoria",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Categorium"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCategorium",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Categorium",
+            "schema": {
+              "$ref": "#/definitions/Categorium"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Categorium"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Categoria({Id})": {
+      "delete": {
+        "operationId": "deleteCategorium",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getCategoriumById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Categorium"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateCategorium",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Categorium",
+            "schema": {
+              "$ref": "#/definitions/Categorium"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/CategoriaInsumos": {
+      "get": {
+        "operationId": "getCategoriaInsumos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/CategoriaInsumo"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCategoriaInsumo",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "CategoriaInsumo",
+            "schema": {
+              "$ref": "#/definitions/CategoriaInsumo"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/CategoriaInsumo"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/CategoriaInsumos({Id})": {
+      "delete": {
+        "operationId": "deleteCategoriaInsumo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getCategoriaInsumoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CategoriaInsumo"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateCategoriaInsumo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "CategoriaInsumo",
+            "schema": {
+              "$ref": "#/definitions/CategoriaInsumo"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Ciudads": {
+      "get": {
+        "operationId": "getCiudads",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Ciudad"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCiudad",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Ciudad",
+            "schema": {
+              "$ref": "#/definitions/Ciudad"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Ciudad"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Ciudads({Id})": {
+      "delete": {
+        "operationId": "deleteCiudad",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getCiudadById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Ciudad"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateCiudad",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Ciudad",
+            "schema": {
+              "$ref": "#/definitions/Ciudad"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Compras": {
+      "get": {
+        "operationId": "getCompras",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Compra"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCompra",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Compra",
+            "schema": {
+              "$ref": "#/definitions/Compra"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Compra"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Compras({Id})": {
+      "delete": {
+        "operationId": "deleteCompra",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getCompraById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Compra"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateCompra",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Compra",
+            "schema": {
+              "$ref": "#/definitions/Compra"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ComprasPagos": {
+      "get": {
+        "operationId": "getComprasPagos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ComprasPago"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createComprasPago",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ComprasPago",
+            "schema": {
+              "$ref": "#/definitions/ComprasPago"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/ComprasPago"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ComprasPagos({Id})": {
+      "delete": {
+        "operationId": "deleteComprasPago",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getComprasPagoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ComprasPago"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateComprasPago",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "ComprasPago",
+            "schema": {
+              "$ref": "#/definitions/ComprasPago"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ControlPlagas": {
+      "get": {
+        "operationId": "getControlPlagas",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ControlPlaga"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createControlPlaga",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ControlPlaga",
+            "schema": {
+              "$ref": "#/definitions/ControlPlaga"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/ControlPlaga"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ControlPlagas({Id})": {
+      "delete": {
+        "operationId": "deleteControlPlaga",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getControlPlagaById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ControlPlaga"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateControlPlaga",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "ControlPlaga",
+            "schema": {
+              "$ref": "#/definitions/ControlPlaga"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Cultivos": {
+      "get": {
+        "operationId": "getCultivos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Cultivo"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCultivo",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Cultivo",
+            "schema": {
+              "$ref": "#/definitions/Cultivo"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Cultivo"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Cultivos({Id})": {
+      "delete": {
+        "operationId": "deleteCultivo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getCultivoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Cultivo"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateCultivo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Cultivo",
+            "schema": {
+              "$ref": "#/definitions/Cultivo"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Departamentos": {
+      "get": {
+        "operationId": "getDepartamentos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Departamento"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createDepartamento",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Departamento",
+            "schema": {
+              "$ref": "#/definitions/Departamento"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Departamento"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Departamentos({Id})": {
+      "delete": {
+        "operationId": "deleteDepartamento",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getDepartamentoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Departamento"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateDepartamento",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Departamento",
+            "schema": {
+              "$ref": "#/definitions/Departamento"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DetalleCategoriaInsumos": {
+      "get": {
+        "operationId": "getDetalleCategoriaInsumos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/DetalleCategoriaInsumo"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createDetalleCategoriaInsumo",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "DetalleCategoriaInsumo",
+            "schema": {
+              "$ref": "#/definitions/DetalleCategoriaInsumo"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/DetalleCategoriaInsumo"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DetalleCategoriaInsumos({Id})": {
+      "delete": {
+        "operationId": "deleteDetalleCategoriaInsumo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getDetalleCategoriaInsumoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/DetalleCategoriaInsumo"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateDetalleCategoriaInsumo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "DetalleCategoriaInsumo",
+            "schema": {
+              "$ref": "#/definitions/DetalleCategoriaInsumo"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DetalleCompras": {
+      "get": {
+        "operationId": "getDetalleCompras",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/DetalleCompra"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createDetalleCompra",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "DetalleCompra",
+            "schema": {
+              "$ref": "#/definitions/DetalleCompra"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/DetalleCompra"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DetalleCompras({Id})": {
+      "delete": {
+        "operationId": "deleteDetalleCompra",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getDetalleCompraById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/DetalleCompra"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateDetalleCompra",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "DetalleCompra",
+            "schema": {
+              "$ref": "#/definitions/DetalleCompra"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DetalleMetodopagos": {
+      "get": {
+        "operationId": "getDetalleMetodopagos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/DetalleMetodopago"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createDetalleMetodopago",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "DetalleMetodopago",
+            "schema": {
+              "$ref": "#/definitions/DetalleMetodopago"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/DetalleMetodopago"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DetalleMetodopagos({Id})": {
+      "delete": {
+        "operationId": "deleteDetalleMetodopago",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getDetalleMetodopagoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/DetalleMetodopago"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateDetalleMetodopago",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "DetalleMetodopago",
+            "schema": {
+              "$ref": "#/definitions/DetalleMetodopago"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DetalleOferta": {
+      "get": {
+        "operationId": "getDetalleOferta",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/DetalleOfertum"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createDetalleOfertum",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "DetalleOfertum",
+            "schema": {
+              "$ref": "#/definitions/DetalleOfertum"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/DetalleOfertum"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DetalleOferta({Id})": {
+      "delete": {
+        "operationId": "deleteDetalleOfertum",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getDetalleOfertumById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/DetalleOfertum"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateDetalleOfertum",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "DetalleOfertum",
+            "schema": {
+              "$ref": "#/definitions/DetalleOfertum"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DetalleTipoProductos": {
+      "get": {
+        "operationId": "getDetalleTipoProductos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/DetalleTipoProducto"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createDetalleTipoProducto",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "DetalleTipoProducto",
+            "schema": {
+              "$ref": "#/definitions/DetalleTipoProducto"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/DetalleTipoProducto"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/DetalleTipoProductos({Id})": {
+      "delete": {
+        "operationId": "deleteDetalleTipoProducto",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getDetalleTipoProductoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/DetalleTipoProducto"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateDetalleTipoProducto",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "DetalleTipoProducto",
+            "schema": {
+              "$ref": "#/definitions/DetalleTipoProducto"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Enfermedades": {
+      "get": {
+        "operationId": "getEnfermedades",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Enfermedade"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createEnfermedade",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Enfermedade",
+            "schema": {
+              "$ref": "#/definitions/Enfermedade"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Enfermedade"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Enfermedades({Id})": {
+      "delete": {
+        "operationId": "deleteEnfermedade",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getEnfermedadeById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Enfermedade"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateEnfermedade",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Enfermedade",
+            "schema": {
+              "$ref": "#/definitions/Enfermedade"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Equipos": {
+      "get": {
+        "operationId": "getEquipos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Equipo"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createEquipo",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Equipo",
+            "schema": {
+              "$ref": "#/definitions/Equipo"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Equipo"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Equipos({Id})": {
+      "delete": {
+        "operationId": "deleteEquipo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getEquipoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Equipo"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateEquipo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Equipo",
+            "schema": {
+              "$ref": "#/definitions/Equipo"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Fotos": {
+      "get": {
+        "operationId": "getFotos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Foto"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createFoto",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Foto",
+            "schema": {
+              "$ref": "#/definitions/Foto"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Foto"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Fotos({Id})": {
+      "delete": {
+        "operationId": "deleteFoto",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getFotoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Foto"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateFoto",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Foto",
+            "schema": {
+              "$ref": "#/definitions/Foto"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Insumos": {
+      "get": {
+        "operationId": "getInsumos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Insumo"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createInsumo",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Insumo",
+            "schema": {
+              "$ref": "#/definitions/Insumo"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Insumo"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Insumos({Id})": {
+      "delete": {
+        "operationId": "deleteInsumo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getInsumoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Insumo"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateInsumo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Insumo",
+            "schema": {
+              "$ref": "#/definitions/Insumo"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Laboratorios": {
+      "get": {
+        "operationId": "getLaboratorios",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Laboratorio"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createLaboratorio",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Laboratorio",
+            "schema": {
+              "$ref": "#/definitions/Laboratorio"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Laboratorio"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Laboratorios({Id})": {
+      "delete": {
+        "operationId": "deleteLaboratorio",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getLaboratorioById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Laboratorio"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateLaboratorio",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Laboratorio",
+            "schema": {
+              "$ref": "#/definitions/Laboratorio"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/LocalizacionUps": {
+      "get": {
+        "operationId": "getLocalizacionUps",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/LocalizacionUp"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createLocalizacionUp",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "LocalizacionUp",
+            "schema": {
+              "$ref": "#/definitions/LocalizacionUp"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/LocalizacionUp"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/LocalizacionUps({Id})": {
+      "delete": {
+        "operationId": "deleteLocalizacionUp",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getLocalizacionUpById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/LocalizacionUp"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateLocalizacionUp",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "LocalizacionUp",
+            "schema": {
+              "$ref": "#/definitions/LocalizacionUp"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Lotes": {
+      "get": {
+        "operationId": "getLotes",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Lote"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createLote",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Lote",
+            "schema": {
+              "$ref": "#/definitions/Lote"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Lote"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Lotes({Id})": {
+      "delete": {
+        "operationId": "deleteLote",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getLoteById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Lote"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateLote",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Lote",
+            "schema": {
+              "$ref": "#/definitions/Lote"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/MetodoPagos": {
+      "get": {
+        "operationId": "getMetodoPagos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/MetodoPago"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createMetodoPago",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "MetodoPago",
+            "schema": {
+              "$ref": "#/definitions/MetodoPago"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/MetodoPago"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/MetodoPagos({Id})": {
+      "delete": {
+        "operationId": "deleteMetodoPago",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getMetodoPagoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/MetodoPago"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateMetodoPago",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "MetodoPago",
+            "schema": {
+              "$ref": "#/definitions/MetodoPago"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Notificaciones": {
+      "get": {
+        "operationId": "getNotificaciones",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Notificacione"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createNotificacione",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Notificacione",
+            "schema": {
+              "$ref": "#/definitions/Notificacione"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Notificacione"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Notificaciones({Id})": {
+      "delete": {
+        "operationId": "deleteNotificacione",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getNotificacioneById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Notificacione"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateNotificacione",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Notificacione",
+            "schema": {
+              "$ref": "#/definitions/Notificacione"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Oferta": {
+      "get": {
+        "operationId": "getOferta",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Oferta"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createOferta",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Oferta",
+            "schema": {
+              "$ref": "#/definitions/Oferta"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Oferta"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Oferta({Id})": {
+      "delete": {
+        "operationId": "deleteOferta",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getOfertaById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Oferta"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateOferta",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Oferta",
+            "schema": {
+              "$ref": "#/definitions/Oferta"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Pagos": {
+      "get": {
+        "operationId": "getPagos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Pago"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPago",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Pago",
+            "schema": {
+              "$ref": "#/definitions/Pago"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Pago"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Pagos({Id})": {
+      "delete": {
+        "operationId": "deletePago",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPagoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Pago"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updatePago",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Pago",
+            "schema": {
+              "$ref": "#/definitions/Pago"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Produccions": {
+      "get": {
+        "operationId": "getProduccions",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Produccion"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProduccion",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Produccion",
+            "schema": {
+              "$ref": "#/definitions/Produccion"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Produccion"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Produccions({Id})": {
+      "delete": {
+        "operationId": "deleteProduccion",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getProduccionById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Produccion"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateProduccion",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Produccion",
+            "schema": {
+              "$ref": "#/definitions/Produccion"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductCategoria": {
+      "get": {
+        "operationId": "getProductCategoria",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ProductCategorium"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProductCategorium",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ProductCategorium",
+            "schema": {
+              "$ref": "#/definitions/ProductCategorium"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/ProductCategorium"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductCategoria({Id})": {
+      "delete": {
+        "operationId": "deleteProductCategorium",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getProductCategoriumById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ProductCategorium"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateProductCategorium",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "ProductCategorium",
+            "schema": {
+              "$ref": "#/definitions/ProductCategorium"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Productos": {
+      "get": {
+        "operationId": "getProductos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Producto"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProducto",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Producto",
+            "schema": {
+              "$ref": "#/definitions/Producto"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Producto"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Productos({Id})": {
+      "delete": {
+        "operationId": "deleteProducto",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getProductoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Producto"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateProducto",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Producto",
+            "schema": {
+              "$ref": "#/definitions/Producto"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Receta": {
+      "get": {
+        "operationId": "getReceta",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Recetum"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createRecetum",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Recetum",
+            "schema": {
+              "$ref": "#/definitions/Recetum"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Recetum"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Receta({Id})": {
+      "delete": {
+        "operationId": "deleteRecetum",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getRecetumById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Recetum"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateRecetum",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Recetum",
+            "schema": {
+              "$ref": "#/definitions/Recetum"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Rols": {
+      "get": {
+        "operationId": "getRols",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Rol"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createRol",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Rol",
+            "schema": {
+              "$ref": "#/definitions/Rol"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Rol"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Rols({Id})": {
+      "delete": {
+        "operationId": "deleteRol",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getRolById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Rol"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateRol",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Rol",
+            "schema": {
+              "$ref": "#/definitions/Rol"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TipoInsumos": {
+      "get": {
+        "operationId": "getTipoInsumos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TipoInsumo"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTipoInsumo",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TipoInsumo",
+            "schema": {
+              "$ref": "#/definitions/TipoInsumo"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TipoInsumo"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TipoInsumos({Id})": {
+      "delete": {
+        "operationId": "deleteTipoInsumo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTipoInsumoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TipoInsumo"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTipoInsumo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "TipoInsumo",
+            "schema": {
+              "$ref": "#/definitions/TipoInsumo"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TipoProductos": {
+      "get": {
+        "operationId": "getTipoProductos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TipoProducto"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTipoProducto",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TipoProducto",
+            "schema": {
+              "$ref": "#/definitions/TipoProducto"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TipoProducto"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TipoProductos({Id})": {
+      "delete": {
+        "operationId": "deleteTipoProducto",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTipoProductoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TipoProducto"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTipoProducto",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "TipoProducto",
+            "schema": {
+              "$ref": "#/definitions/TipoProducto"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Tratamientos": {
+      "get": {
+        "operationId": "getTratamientos",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Tratamiento"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTratamiento",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Tratamiento",
+            "schema": {
+              "$ref": "#/definitions/Tratamiento"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Tratamiento"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Tratamientos({Id})": {
+      "delete": {
+        "operationId": "deleteTratamiento",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTratamientoById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Tratamiento"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTratamiento",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Tratamiento",
+            "schema": {
+              "$ref": "#/definitions/Tratamiento"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TypeNotifications": {
+      "get": {
+        "operationId": "getTypeNotifications",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TypeNotification"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTypeNotification",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TypeNotification",
+            "schema": {
+              "$ref": "#/definitions/TypeNotification"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TypeNotification"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TypeNotifications({Id})": {
+      "delete": {
+        "operationId": "deleteTypeNotification",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTypeNotificationById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TypeNotification"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTypeNotification",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "TypeNotification",
+            "schema": {
+              "$ref": "#/definitions/TypeNotification"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/UnidadMedidas": {
+      "get": {
+        "operationId": "getUnidadMedidas",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/UnidadMedida"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createUnidadMedida",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "UnidadMedida",
+            "schema": {
+              "$ref": "#/definitions/UnidadMedida"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/UnidadMedida"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/UnidadMedidas({Id})": {
+      "delete": {
+        "operationId": "deleteUnidadMedida",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getUnidadMedidaById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/UnidadMedida"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateUnidadMedida",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "UnidadMedida",
+            "schema": {
+              "$ref": "#/definitions/UnidadMedida"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/UnidadProductivas": {
+      "get": {
+        "operationId": "getUnidadProductivas",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/UnidadProductiva"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createUnidadProductiva",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "UnidadProductiva",
+            "schema": {
+              "$ref": "#/definitions/UnidadProductiva"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/UnidadProductiva"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/UnidadProductivas({Id})": {
+      "delete": {
+        "operationId": "deleteUnidadProductiva",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getUnidadProductivaById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/UnidadProductiva"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateUnidadProductiva",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "UnidadProductiva",
+            "schema": {
+              "$ref": "#/definitions/UnidadProductiva"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Usuarios": {
+      "get": {
+        "operationId": "getUsuarios",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Usuario"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createUsuario",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Usuario",
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Usuarios({Id})": {
+      "delete": {
+        "operationId": "deleteUsuario",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getUsuarioById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateUsuario",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Usuario",
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "schemes": [
+    "http"
+  ]
+}

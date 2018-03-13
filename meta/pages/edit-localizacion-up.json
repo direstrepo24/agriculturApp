@@ -1,0 +1,184 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "${localizacionup}",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to update LocalizacionUp",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.updateLocalizacionUp",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${parameters.Id}"
+                      },
+                      {
+                        "name": "LocalizacionUp",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "localizacion-ups",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Barrio",
+                  "required": false,
+                  "title": "Barrio",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Coordenadas",
+                  "required": false,
+                  "title": "Coordenadas",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Direccion",
+                  "required": false,
+                  "title": "Direccion",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "DireccionAproximadaGps",
+                  "required": false,
+                  "title": "Direccion Aproximada Gps",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Latitud",
+                  "required": true,
+                  "title": "Latitud",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Localidad",
+                  "required": false,
+                  "title": "Localidad",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Longitud",
+                  "required": true,
+                  "title": "Longitud",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "ReferenciaLocalizacion",
+                  "required": false,
+                  "title": "Referencia Localizacion",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Sector",
+                  "required": false,
+                  "title": "Sector",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "vereda",
+                  "required": false,
+                  "title": "Vereda",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getUnidadProductivasResult}",
+                  "property": "UnidadProductivaId",
+                  "required": true,
+                  "textProperty": "Codigo",
+                  "title": "Unidad Productiva",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose UnidadProductiva",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getLocalizacionUpById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "localizacionup",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getUnidadProductivas",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getUnidadProductivasResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Localizacion Up",
+  "access": [
+    "Authenticated"
+  ]
+}

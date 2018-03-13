@@ -1,0 +1,121 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to create new Pago!",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.createPago",
+                    "parameters": [
+                      {
+                        "name": "Pago",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "pagos",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "CreatedOn",
+                  "required": true,
+                  "title": "Created On",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Monto",
+                  "required": true,
+                  "title": "Monto",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Saldo",
+                  "required": false,
+                  "title": "Saldo",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "UpdatedOn",
+                  "required": true,
+                  "title": "Updated On",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getMetodoPagosResult}",
+                  "property": "MetodoPagoId",
+                  "required": true,
+                  "textProperty": "Nombre",
+                  "title": "Metodo Pago",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose MetodoPago",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getMetodoPagos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getMetodoPagosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Add Pago",
+  "access": [
+    "Authenticated"
+  ]
+}

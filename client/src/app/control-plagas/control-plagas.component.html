@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-grid #grid0 [allowDelete]="true" [allowAdd]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [count]="getControlPlagasCount" [data]="getControlPlagasResult" emptyText="No records to display." (loadData)="grid0LoadData($event)" (delete)="grid0Delete($event)" (add)="grid0Add($event)" (rowSelect)="grid0RowSelect($event)">
+      <rz-grid-column format="int64" property="CultivoId" sortProperty="Cultivo.Descripcion" filterProperty="Cultivo.Descripcion" title="Cultivo" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Cultivo?.Descripcion}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="float" property="Dosis" title="Dosis" type="number">
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="EnfermedadesId" sortProperty="Enfermedade.Codigo" filterProperty="Enfermedade.Codigo" title="Enfermedade" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Enfermedade?.Codigo}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="date-time" property="Fecha_aplicacion" title="Fecha Aplicacion" type="string">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Fecha_aplicacion | utcDate}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="Id" title="Id" type="integer">
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="TratamientoId" sortProperty="Tratamiento.Desc_Aplicacion" filterProperty="Tratamiento.Desc_Aplicacion" title="Tratamiento" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Tratamiento?.Desc_Aplicacion}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column property="UnidadMedidaId" sortProperty="UnidadMedida.Descripcion" filterProperty="UnidadMedida.Descripcion" title="Unidad Medida" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.UnidadMedida?.Descripcion}}
+        </ng-template>
+      </rz-grid-column>
+    </rz-grid>
+  </div>
+</div>

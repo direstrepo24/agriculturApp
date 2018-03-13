@@ -1,0 +1,149 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "${foto}",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to update Foto",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.updateFoto",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${parameters.Id}"
+                      },
+                      {
+                        "name": "Foto",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "fotos",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Descripcion",
+                  "required": false,
+                  "title": "Descripcion",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "FechaCreacion",
+                  "required": true,
+                  "title": "Fecha Creacion",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Hora",
+                  "required": false,
+                  "title": "Hora",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Ruta",
+                  "required": false,
+                  "title": "Ruta",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Titulo",
+                  "required": false,
+                  "title": "Titulo",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getEnfermedadesResult}",
+                  "property": "EnfermedadesId",
+                  "required": true,
+                  "textProperty": "Codigo",
+                  "title": "Enfermedade",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Enfermedade",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getFotoById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "foto",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getEnfermedades",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getEnfermedadesResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Foto",
+  "access": [
+    "Authenticated"
+  ]
+}

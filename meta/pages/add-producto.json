@@ -1,0 +1,202 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to create new Producto!",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.createProducto",
+                    "parameters": [
+                      {
+                        "name": "Producto",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "productos",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "CodigoUp",
+                  "required": false,
+                  "title": "Codigo Up",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Descripcion",
+                  "required": false,
+                  "title": "Descripcion",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "FechaLimiteDisponibilidad",
+                  "required": true,
+                  "title": "Fecha Limite Disponibilidad",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Imagen",
+                  "required": false,
+                  "title": "Imagen",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "IsEnable",
+                  "required": true,
+                  "title": "Is Enable",
+                  "type": "boolean",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Precio",
+                  "required": true,
+                  "title": "Precio",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "PrecioSpecial",
+                  "required": false,
+                  "title": "Precio Special",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Stock",
+                  "required": true,
+                  "title": "Stock",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "nombre",
+                  "required": false,
+                  "title": "Nombre",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getCalidadsResult}",
+                  "property": "CalidadId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Calidad",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Calidad",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getCategoriaResult}",
+                  "property": "CategoriaId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Categorium",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Categorium",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getCultivosResult}",
+                  "property": "cultivoId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Cultivo",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Cultivo",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getCalidads",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getCalidadsResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getCategoria",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getCategoriaResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getCultivos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getCultivosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Add Producto",
+  "access": [
+    "Authenticated"
+  ]
+}

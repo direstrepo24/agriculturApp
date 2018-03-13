@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-grid #grid0 [allowDelete]="true" [allowAdd]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [count]="getTratamientosCount" [data]="getTratamientosResult" emptyText="No records to display." (loadData)="grid0LoadData($event)" (delete)="grid0Delete($event)" (add)="grid0Add($event)" (rowSelect)="grid0RowSelect($event)">
+      <rz-grid-column property="Categoria_InsumoId" sortProperty="CategoriaInsumo.Nombre" filterProperty="CategoriaInsumo.Nombre" title="Categoria Insumo" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.CategoriaInsumo?.Nombre}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column property="Desc_Aplicacion" title="Desc Aplicacion" type="string">
+      </rz-grid-column>
+      <rz-grid-column property="Desc_Formulacion" title="Desc Formulacion" type="string">
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="Id" title="Id" type="integer">
+      </rz-grid-column>
+      <rz-grid-column property="IngredienteActivo" title="Ingrediente Activo" type="string">
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="InsumoId" sortProperty="Insumo.Descripcion" filterProperty="Insumo.Descripcion" title="Insumo" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Insumo?.Descripcion}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column property="Modo_Accion" title="Modo Accion" type="string">
+      </rz-grid-column>
+      <rz-grid-column property="Nombre_Comercial" title="Nombre Comercial" type="string">
+      </rz-grid-column>
+      <rz-grid-column format="decimal" property="precioAproximado" title="Precio Aproximado" type="number">
+      </rz-grid-column>
+      <rz-grid-column property="proveedor" title="Proveedor" type="string">
+      </rz-grid-column>
+    </rz-grid>
+  </div>
+</div>

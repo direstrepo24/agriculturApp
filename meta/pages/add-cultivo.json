@@ -1,0 +1,151 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to create new Cultivo!",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.createCultivo",
+                    "parameters": [
+                      {
+                        "name": "Cultivo",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "cultivos",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Descripcion",
+                  "required": false,
+                  "title": "Descripcion",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "EstimadoCosecha",
+                  "required": true,
+                  "title": "Estimado Cosecha",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "FechaFin",
+                  "required": true,
+                  "title": "Fecha Fin",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "FechaIncio",
+                  "required": true,
+                  "title": "Fecha Incio",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Nombre",
+                  "required": false,
+                  "title": "Nombre",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getDetalleTipoProductosResult}",
+                  "property": "DetalleTipoProductoId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Detalle Tipo Producto",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose DetalleTipoProducto",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getLotesResult}",
+                  "property": "LoteId",
+                  "required": true,
+                  "textProperty": "Codigo",
+                  "title": "Lote",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Lote",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getDetalleTipoProductos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getDetalleTipoProductosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getLotes",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getLotesResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Add Cultivo",
+  "access": [
+    "Authenticated"
+  ]
+}

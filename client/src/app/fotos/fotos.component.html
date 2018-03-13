@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-grid #grid0 [allowDelete]="true" [allowAdd]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [count]="getFotosCount" [data]="getFotosResult" emptyText="No records to display." (loadData)="grid0LoadData($event)" (delete)="grid0Delete($event)" (add)="grid0Add($event)" (rowSelect)="grid0RowSelect($event)">
+      <rz-grid-column property="Descripcion" title="Descripcion" type="string">
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="EnfermedadesId" sortProperty="Enfermedade.Codigo" filterProperty="Enfermedade.Codigo" title="Enfermedade" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Enfermedade?.Codigo}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="date-time" property="FechaCreacion" title="Fecha Creacion" type="string">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.FechaCreacion | utcDate}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column property="Hora" title="Hora" type="string">
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="Id" title="Id" type="integer">
+      </rz-grid-column>
+      <rz-grid-column property="Ruta" title="Ruta" type="string">
+      </rz-grid-column>
+      <rz-grid-column property="Titulo" title="Titulo" type="string">
+      </rz-grid-column>
+    </rz-grid>
+  </div>
+</div>

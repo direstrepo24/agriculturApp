@@ -1,0 +1,128 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "${detallecategoriainsumo}",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to update DetalleCategoriaInsumo",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.updateDetalleCategoriaInsumo",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${parameters.Id}"
+                      },
+                      {
+                        "name": "DetalleCategoriaInsumo",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "detalle-categoria-insumos",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Descripcion",
+                  "required": false,
+                  "title": "Descripcion",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Letra",
+                  "required": true,
+                  "title": "Letra",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getCategoriaInsumosResult}",
+                  "property": "Categoria_InsumoId",
+                  "required": false,
+                  "textProperty": "Nombre",
+                  "title": "Categoria Insumo",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose CategoriaInsumo",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getDetalleCategoriaInsumoById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "detallecategoriainsumo",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getCategoriaInsumos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getCategoriaInsumosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Detalle Categoria Insumo",
+  "access": [
+    "Authenticated"
+  ]
+}

@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-grid #grid0 [allowDelete]="true" [allowAdd]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [count]="getDetalleOfertaCount" [data]="getDetalleOfertaResult" emptyText="No records to display." (loadData)="grid0LoadData($event)" (delete)="grid0Delete($event)" (add)="grid0Add($event)" (rowSelect)="grid0RowSelect($event)">
+      <rz-grid-column format="int64" property="CalidadId" sortProperty="Calidad.Descripcion" filterProperty="Calidad.Descripcion" title="Calidad" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Calidad?.Descripcion}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="decimal" property="Cantidad" title="Cantidad" type="number">
+      </rz-grid-column>
+      <rz-grid-column property="Id" title="Id" type="integer">
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="OfertasId" sortProperty="Oferta.Id" filterProperty="Oferta.Id" title="Oferta" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Oferta?.Id}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="ProductoId" sortProperty="Producto.CodigoUp" filterProperty="Producto.CodigoUp" title="Producto" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Producto?.CodigoUp}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column property="UnidadMedidaId" sortProperty="UnidadMedida.Descripcion" filterProperty="UnidadMedida.Descripcion" title="Unidad Medida" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.UnidadMedida?.Descripcion}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="decimal" property="Valor_Oferta" title="Valor Oferta" type="number">
+      </rz-grid-column>
+      <rz-grid-column format="decimal" property="Valor_minimo" title="Valor Minimo" type="number">
+      </rz-grid-column>
+      <rz-grid-column format="decimal" property="Valor_transaccion" title="Valor Transaccion" type="number">
+      </rz-grid-column>
+    </rz-grid>
+  </div>
+</div>

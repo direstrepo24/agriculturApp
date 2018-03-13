@@ -1,0 +1,216 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "name": "grid0",
+              "allowDelete": true,
+              "allowAdd": true,
+              "allowFiltering": true,
+              "allowMultiSorting": false,
+              "allowPaging": true,
+              "allowSorting": true,
+              "count": "${getDetalleComprasCount}",
+              "data": "${getDetalleComprasResult}",
+              "events": {
+                "loadData": [
+                  {
+                    "name": "agriculturebd.getDetalleCompras",
+                    "parameters": [
+                      {
+                        "name": "$top",
+                        "value": "this.grid0.allowPaging ? event.top : null"
+                      },
+                      {
+                        "name": "$skip",
+                        "value": "this.grid0.allowPaging ? event.skip : null"
+                      },
+                      {
+                        "name": "$expand",
+                        "value": "Compra,Producto"
+                      },
+                      {
+                        "name": "$count",
+                        "value": "this.grid0.allowPaging"
+                      },
+                      {
+                        "name": "$filter",
+                        "value": "${event.filter}"
+                      },
+                      {
+                        "name": "$orderby",
+                        "value": "${event.orderby}"
+                      },
+                      {
+                        "name": "$expand",
+                        "value": "Compra,Producto"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "name": "getDetalleComprasResult",
+                        "type": "set",
+                        "value": "${result.value}"
+                      },
+                      {
+                        "name": "getDetalleComprasCount",
+                        "type": "set",
+                        "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
+                "delete": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to delete DetalleCompra",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.deleteDetalleCompra",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${event.Id}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "detail": "DetalleCompra deleted!",
+                        "severity": "success",
+                        "summary": "Success",
+                        "type": "notify"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
+                "add": [
+                  {
+                    "path": "add-detalle-compra",
+                    "type": "popup"
+                  }
+                ],
+                "rowSelect": [
+                  {
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${event.Id}"
+                      }
+                    ],
+                    "path": "edit-detalle-compra",
+                    "type": "popup"
+                  }
+                ]
+              },
+              "title": "",
+              "columns": [
+                {
+                  "format": "int64",
+                  "property": "ComprasId",
+                  "sortProperty": "Compra.CodigoCupon",
+                  "filterProperty": "Compra.CodigoCupon",
+                  "template": "${data.Compra?.CodigoCupon}",
+                  "title": "Compra",
+                  "type": "integer"
+                },
+                {
+                  "format": "int64",
+                  "property": "Id",
+                  "title": "Id",
+                  "type": "integer"
+                },
+                {
+                  "format": "decimal",
+                  "property": "Impuesto",
+                  "title": "Impuesto",
+                  "type": "number"
+                },
+                {
+                  "format": "decimal",
+                  "property": "Precio",
+                  "title": "Precio",
+                  "type": "number"
+                },
+                {
+                  "format": "int64",
+                  "property": "ProductoId",
+                  "sortProperty": "Producto.CodigoUp",
+                  "filterProperty": "Producto.CodigoUp",
+                  "template": "${data.Producto?.CodigoUp}",
+                  "title": "Producto",
+                  "type": "integer"
+                },
+                {
+                  "format": "decimal",
+                  "property": "Quantity",
+                  "title": "Quantity",
+                  "type": "number"
+                },
+                {
+                  "property": "descripcion",
+                  "title": "Descripcion",
+                  "type": "string"
+                }
+              ],
+              "type": "grid",
+              "emptyText": "No records to display."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getDetalleCompras",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+          },
+          {
+            "name": "$skip",
+            "value": "this.grid0.allowPaging ? 0 : null"
+          },
+          {
+            "name": "$count",
+            "value": "this.grid0.allowPaging"
+          },
+          {
+            "name": "$expand",
+            "value": "Compra,Producto"
+          }
+        ],
+        "then": [
+          {
+            "name": "getDetalleComprasResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getDetalleComprasCount",
+            "type": "set",
+            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Detalle Compras",
+  "access": [
+    "Authenticated"
+  ]
+}

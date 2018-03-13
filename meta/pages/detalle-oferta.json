@@ -1,0 +1,233 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "name": "grid0",
+              "allowDelete": true,
+              "allowAdd": true,
+              "allowFiltering": true,
+              "allowMultiSorting": false,
+              "allowPaging": true,
+              "allowSorting": true,
+              "count": "${getDetalleOfertaCount}",
+              "data": "${getDetalleOfertaResult}",
+              "events": {
+                "loadData": [
+                  {
+                    "name": "agriculturebd.getDetalleOferta",
+                    "parameters": [
+                      {
+                        "name": "$top",
+                        "value": "this.grid0.allowPaging ? event.top : null"
+                      },
+                      {
+                        "name": "$skip",
+                        "value": "this.grid0.allowPaging ? event.skip : null"
+                      },
+                      {
+                        "name": "$expand",
+                        "value": "Calidad,Oferta,Producto,UnidadMedida"
+                      },
+                      {
+                        "name": "$count",
+                        "value": "this.grid0.allowPaging"
+                      },
+                      {
+                        "name": "$filter",
+                        "value": "${event.filter}"
+                      },
+                      {
+                        "name": "$orderby",
+                        "value": "${event.orderby}"
+                      },
+                      {
+                        "name": "$expand",
+                        "value": "Calidad,Oferta,Producto,UnidadMedida"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "name": "getDetalleOfertaResult",
+                        "type": "set",
+                        "value": "${result.value}"
+                      },
+                      {
+                        "name": "getDetalleOfertaCount",
+                        "type": "set",
+                        "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
+                "delete": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to delete DetalleOfertum",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.deleteDetalleOfertum",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${event.Id}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "detail": "DetalleOfertum deleted!",
+                        "severity": "success",
+                        "summary": "Success",
+                        "type": "notify"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
+                "add": [
+                  {
+                    "path": "add-detalle-ofertum",
+                    "type": "popup"
+                  }
+                ],
+                "rowSelect": [
+                  {
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${event.Id}"
+                      }
+                    ],
+                    "path": "edit-detalle-ofertum",
+                    "type": "popup"
+                  }
+                ]
+              },
+              "title": "",
+              "columns": [
+                {
+                  "format": "int64",
+                  "property": "CalidadId",
+                  "sortProperty": "Calidad.Descripcion",
+                  "filterProperty": "Calidad.Descripcion",
+                  "template": "${data.Calidad?.Descripcion}",
+                  "title": "Calidad",
+                  "type": "integer"
+                },
+                {
+                  "format": "decimal",
+                  "property": "Cantidad",
+                  "title": "Cantidad",
+                  "type": "number"
+                },
+                {
+                  "property": "Id",
+                  "title": "Id",
+                  "type": "integer"
+                },
+                {
+                  "format": "int64",
+                  "property": "OfertasId",
+                  "sortProperty": "Oferta.Id",
+                  "filterProperty": "Oferta.Id",
+                  "template": "${data.Oferta?.Id}",
+                  "title": "Oferta",
+                  "type": "integer"
+                },
+                {
+                  "format": "int64",
+                  "property": "ProductoId",
+                  "sortProperty": "Producto.CodigoUp",
+                  "filterProperty": "Producto.CodigoUp",
+                  "template": "${data.Producto?.CodigoUp}",
+                  "title": "Producto",
+                  "type": "integer"
+                },
+                {
+                  "property": "UnidadMedidaId",
+                  "sortProperty": "UnidadMedida.Descripcion",
+                  "filterProperty": "UnidadMedida.Descripcion",
+                  "template": "${data.UnidadMedida?.Descripcion}",
+                  "title": "Unidad Medida",
+                  "type": "integer"
+                },
+                {
+                  "format": "decimal",
+                  "property": "Valor_Oferta",
+                  "title": "Valor Oferta",
+                  "type": "number"
+                },
+                {
+                  "format": "decimal",
+                  "property": "Valor_minimo",
+                  "title": "Valor Minimo",
+                  "type": "number"
+                },
+                {
+                  "format": "decimal",
+                  "property": "Valor_transaccion",
+                  "title": "Valor Transaccion",
+                  "type": "number"
+                }
+              ],
+              "type": "grid",
+              "emptyText": "No records to display."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getDetalleOferta",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+          },
+          {
+            "name": "$skip",
+            "value": "this.grid0.allowPaging ? 0 : null"
+          },
+          {
+            "name": "$count",
+            "value": "this.grid0.allowPaging"
+          },
+          {
+            "name": "$expand",
+            "value": "Calidad,Oferta,Producto,UnidadMedida"
+          }
+        ],
+        "then": [
+          {
+            "name": "getDetalleOfertaResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getDetalleOfertaCount",
+            "type": "set",
+            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Detalle Oferta",
+  "access": [
+    "Authenticated"
+  ]
+}

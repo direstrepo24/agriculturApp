@@ -1,0 +1,116 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to create new ProductCategorium!",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.createProductCategorium",
+                    "parameters": [
+                      {
+                        "name": "ProductCategorium",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "product-categoria",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getCategoriaResult}",
+                  "property": "CategoriaId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Categorium",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Categorium",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getProductosResult}",
+                  "property": "ProductoId",
+                  "required": true,
+                  "textProperty": "CodigoUp",
+                  "title": "Producto",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Producto",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getCategoria",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getCategoriaResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getProductos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getProductosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Add Product Categorium",
+  "access": [
+    "Authenticated"
+  ]
+}

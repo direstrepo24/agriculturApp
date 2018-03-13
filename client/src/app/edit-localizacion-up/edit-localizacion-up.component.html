@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-form #form0 [data]="localizacionup" (cancel)="form0Cancel($event)" (submit)="form0Submit($event)">
+      <rz-string-form-field property="Barrio" [required]="false" title="Barrio" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-string-form-field property="Coordenadas" [required]="false" title="Coordenadas" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-string-form-field property="Direccion" [required]="false" title="Direccion" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-string-form-field property="DireccionAproximadaGps" [required]="false" title="Direccion Aproximada Gps" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-integer-form-field property="Id" [required]="true" title="Id" requiredText="is required" type="integer">
+      </rz-integer-form-field>
+      <rz-number-form-field property="Latitud" [required]="true" title="Latitud" requiredText="is required" type="number">
+      </rz-number-form-field>
+      <rz-string-form-field property="Localidad" [required]="false" title="Localidad" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-number-form-field property="Longitud" [required]="true" title="Longitud" requiredText="is required" type="number">
+      </rz-number-form-field>
+      <rz-string-form-field property="ReferenciaLocalizacion" [required]="false" title="Referencia Localizacion" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-string-form-field property="Sector" [required]="false" title="Sector" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-string-form-field property="vereda" [required]="false" title="Vereda" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-lookup-form-field [data]="getUnidadProductivasResult" property="UnidadProductivaId" [required]="true" textProperty="Codigo" title="Unidad Productiva" valueProperty="Id" placeholder="Choose UnidadProductiva" requiredText="is required" type="lookup">
+      </rz-lookup-form-field>
+    </rz-form>
+  </div>
+</div>

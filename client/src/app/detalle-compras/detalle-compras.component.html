@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-grid #grid0 [allowDelete]="true" [allowAdd]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [count]="getDetalleComprasCount" [data]="getDetalleComprasResult" emptyText="No records to display." (loadData)="grid0LoadData($event)" (delete)="grid0Delete($event)" (add)="grid0Add($event)" (rowSelect)="grid0RowSelect($event)">
+      <rz-grid-column format="int64" property="ComprasId" sortProperty="Compra.CodigoCupon" filterProperty="Compra.CodigoCupon" title="Compra" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Compra?.CodigoCupon}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="Id" title="Id" type="integer">
+      </rz-grid-column>
+      <rz-grid-column format="decimal" property="Impuesto" title="Impuesto" type="number">
+      </rz-grid-column>
+      <rz-grid-column format="decimal" property="Precio" title="Precio" type="number">
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="ProductoId" sortProperty="Producto.CodigoUp" filterProperty="Producto.CodigoUp" title="Producto" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Producto?.CodigoUp}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="decimal" property="Quantity" title="Quantity" type="number">
+      </rz-grid-column>
+      <rz-grid-column property="descripcion" title="Descripcion" type="string">
+      </rz-grid-column>
+    </rz-grid>
+  </div>
+</div>

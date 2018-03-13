@@ -1,0 +1,214 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "name": "grid0",
+              "allowDelete": true,
+              "allowAdd": true,
+              "allowFiltering": true,
+              "allowMultiSorting": false,
+              "allowPaging": true,
+              "allowSorting": true,
+              "count": "${getInsumosCount}",
+              "data": "${getInsumosResult}",
+              "events": {
+                "loadData": [
+                  {
+                    "name": "agriculturebd.getInsumos",
+                    "parameters": [
+                      {
+                        "name": "$top",
+                        "value": "this.grid0.allowPaging ? event.top : null"
+                      },
+                      {
+                        "name": "$skip",
+                        "value": "this.grid0.allowPaging ? event.skip : null"
+                      },
+                      {
+                        "name": "$expand",
+                        "value": "TipoInsumo,Laboratorio"
+                      },
+                      {
+                        "name": "$count",
+                        "value": "this.grid0.allowPaging"
+                      },
+                      {
+                        "name": "$filter",
+                        "value": "${event.filter}"
+                      },
+                      {
+                        "name": "$orderby",
+                        "value": "${event.orderby}"
+                      },
+                      {
+                        "name": "$expand",
+                        "value": "TipoInsumo,Laboratorio"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "name": "getInsumosResult",
+                        "type": "set",
+                        "value": "${result.value}"
+                      },
+                      {
+                        "name": "getInsumosCount",
+                        "type": "set",
+                        "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
+                "delete": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to delete Insumo",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.deleteInsumo",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${event.Id}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "detail": "Insumo deleted!",
+                        "severity": "success",
+                        "summary": "Success",
+                        "type": "notify"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
+                "add": [
+                  {
+                    "path": "add-insumo",
+                    "type": "popup"
+                  }
+                ],
+                "rowSelect": [
+                  {
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${event.Id}"
+                      }
+                    ],
+                    "path": "edit-insumo",
+                    "type": "popup"
+                  }
+                ]
+              },
+              "title": "",
+              "columns": [
+                {
+                  "property": "Descripcion",
+                  "title": "Descripcion",
+                  "type": "string"
+                },
+                {
+                  "format": "date-time",
+                  "property": "Fecha_Vencimiento",
+                  "template": "${data.Fecha_Vencimiento | utcDate}",
+                  "title": "Fecha Vencimiento",
+                  "type": "string"
+                },
+                {
+                  "format": "int64",
+                  "property": "Id",
+                  "title": "Id",
+                  "type": "integer"
+                },
+                {
+                  "property": "Nombre",
+                  "title": "Nombre",
+                  "type": "string"
+                },
+                {
+                  "property": "Tipo_InsumoId",
+                  "sortProperty": "TipoInsumo.Nombre",
+                  "filterProperty": "TipoInsumo.Nombre",
+                  "template": "${data.TipoInsumo?.Nombre}",
+                  "title": "Tipo Insumo",
+                  "type": "integer"
+                },
+                {
+                  "format": "int64",
+                  "property": "laboratorioId",
+                  "sortProperty": "Laboratorio.Nombre",
+                  "filterProperty": "Laboratorio.Nombre",
+                  "template": "${data.Laboratorio?.Nombre}",
+                  "title": "Laboratorio",
+                  "type": "integer"
+                },
+                {
+                  "property": "lote_laboratorio",
+                  "title": "Lote Laboratorio",
+                  "type": "string"
+                }
+              ],
+              "type": "grid",
+              "emptyText": "No records to display."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getInsumos",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+          },
+          {
+            "name": "$skip",
+            "value": "this.grid0.allowPaging ? 0 : null"
+          },
+          {
+            "name": "$count",
+            "value": "this.grid0.allowPaging"
+          },
+          {
+            "name": "$expand",
+            "value": "TipoInsumo,Laboratorio"
+          }
+        ],
+        "then": [
+          {
+            "name": "getInsumosResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getInsumosCount",
+            "type": "set",
+            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Insumos",
+  "access": [
+    "Authenticated"
+  ]
+}

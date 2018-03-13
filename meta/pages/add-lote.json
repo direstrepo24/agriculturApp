@@ -1,0 +1,144 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to create new Lote!",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.createLote",
+                    "parameters": [
+                      {
+                        "name": "Lote",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "lotes",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Area",
+                  "required": true,
+                  "title": "Area",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Codigo",
+                  "required": false,
+                  "title": "Codigo",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Localizacion",
+                  "required": false,
+                  "title": "Localizacion",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Localizacion_Poligono",
+                  "required": false,
+                  "title": "Localizacion Poligono",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getUnidadMedidasResult}",
+                  "property": "UnidadMedidaId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Unidad Medida",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose UnidadMedida",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getUnidadProductivasResult}",
+                  "property": "unidadproductivaId",
+                  "required": true,
+                  "textProperty": "Codigo",
+                  "title": "Unidad Productiva",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose UnidadProductiva",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getUnidadMedidas",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getUnidadMedidasResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getUnidadProductivas",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getUnidadProductivasResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Add Lote",
+  "access": [
+    "Authenticated"
+  ]
+}

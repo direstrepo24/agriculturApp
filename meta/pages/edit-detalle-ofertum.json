@@ -1,0 +1,211 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "${detalleofertum}",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to update DetalleOfertum",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.updateDetalleOfertum",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${parameters.Id}"
+                      },
+                      {
+                        "name": "DetalleOfertum",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "detalle-oferta",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Cantidad",
+                  "required": true,
+                  "title": "Cantidad",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Valor_Oferta",
+                  "required": true,
+                  "title": "Valor Oferta",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Valor_minimo",
+                  "required": false,
+                  "title": "Valor Minimo",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Valor_transaccion",
+                  "required": false,
+                  "title": "Valor Transaccion",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getCalidadsResult}",
+                  "property": "CalidadId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Calidad",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Calidad",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getOfertaResult}",
+                  "property": "OfertasId",
+                  "required": false,
+                  "textProperty": "Id",
+                  "title": "Oferta",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Ofertum",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getProductosResult}",
+                  "property": "ProductoId",
+                  "required": true,
+                  "textProperty": "CodigoUp",
+                  "title": "Producto",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Producto",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getUnidadMedidasResult}",
+                  "property": "UnidadMedidaId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Unidad Medida",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose UnidadMedida",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getDetalleOfertumById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "detalleofertum",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getCalidads",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getCalidadsResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getOferta",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getOfertaResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getProductos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getProductosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getUnidadMedidas",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getUnidadMedidasResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Detalle Ofertum",
+  "access": [
+    "Authenticated"
+  ]
+}

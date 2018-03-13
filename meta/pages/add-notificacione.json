@@ -1,0 +1,114 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to create new Notificacione!",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.createNotificacione",
+                    "parameters": [
+                      {
+                        "name": "Notificacione",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "notificaciones",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "EstadoNotif",
+                  "required": false,
+                  "title": "Estado Notif",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Fecha",
+                  "required": true,
+                  "title": "Fecha",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Mensaje",
+                  "required": false,
+                  "title": "Mensaje",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getTypeNotificationsResult}",
+                  "property": "TypeNotificationId1",
+                  "required": false,
+                  "textProperty": "Nombre",
+                  "title": "Type Notification",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose TypeNotification",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getTypeNotifications",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTypeNotificationsResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Add Notificacione",
+  "access": [
+    "Authenticated"
+  ]
+}

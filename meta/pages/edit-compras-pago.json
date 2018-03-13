@@ -1,0 +1,165 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "${compraspago}",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to update ComprasPago",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.updateComprasPago",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${parameters.Id}"
+                      },
+                      {
+                        "name": "ComprasPago",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "compras-pagos",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "CompraId",
+                  "required": true,
+                  "title": "Compra Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "CreatedOn",
+                  "required": true,
+                  "title": "Created On",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "PagoId",
+                  "required": true,
+                  "title": "Pago Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "UpdatedOn",
+                  "required": true,
+                  "title": "Updated On",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getComprasResult}",
+                  "property": "comprasId",
+                  "required": false,
+                  "textProperty": "CodigoCupon",
+                  "title": "Compra",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Compra",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getPagosResult}",
+                  "property": "pagosId",
+                  "required": false,
+                  "textProperty": "Id",
+                  "title": "Pago",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Pago",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getComprasPagoById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "compraspago",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getCompras",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getComprasResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getPagos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getPagosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Compras Pago",
+  "access": [
+    "Authenticated"
+  ]
+}

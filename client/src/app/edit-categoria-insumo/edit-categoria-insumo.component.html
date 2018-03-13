@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-form #form0 [data]="categoriainsumo" (cancel)="form0Cancel($event)" (submit)="form0Submit($event)">
+      <rz-integer-form-field property="Id" [required]="true" title="Id" requiredText="is required" type="integer">
+      </rz-integer-form-field>
+      <rz-string-form-field property="Nombre" [required]="false" title="Nombre" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-string-form-field property="NombreColor" [required]="false" title="Nombre Color" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-string-form-field property="codigoColor" [required]="false" title="Codigo Color" requiredText="is required" type="string">
+      </rz-string-form-field>
+    </rz-form>
+  </div>
+</div>

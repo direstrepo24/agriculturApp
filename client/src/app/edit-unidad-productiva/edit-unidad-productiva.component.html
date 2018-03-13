@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-form #form0 [data]="unidadproductiva" (cancel)="form0Cancel($event)" (submit)="form0Submit($event)">
+      <rz-number-form-field property="Area" [required]="true" title="Area" requiredText="is required" type="number">
+      </rz-number-form-field>
+      <rz-string-form-field property="Codigo" [required]="false" title="Codigo" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-integer-form-field property="Id" [required]="true" title="Id" requiredText="is required" type="integer">
+      </rz-integer-form-field>
+      <rz-string-form-field property="descripcion" [required]="false" title="Descripcion" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-string-form-field property="nombre" [required]="false" title="Nombre" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-lookup-form-field [data]="getCiudadsResult" property="CiudadId" [required]="true" textProperty="Nombre" title="Ciudad" valueProperty="Id" placeholder="Choose Ciudad" requiredText="is required" type="lookup">
+      </rz-lookup-form-field>
+      <rz-lookup-form-field [data]="getUnidadMedidasResult" property="UnidadMedidaId" [required]="true" textProperty="Descripcion" title="Unidad Medida" valueProperty="Id" placeholder="Choose UnidadMedida" requiredText="is required" type="lookup">
+      </rz-lookup-form-field>
+      <rz-lookup-form-field [data]="getUsuariosResult" property="UsuarioId" [required]="true" textProperty="Apellidos" title="Usuario" valueProperty="Id" placeholder="Choose Usuario" requiredText="is required" type="lookup">
+      </rz-lookup-form-field>
+    </rz-form>
+  </div>
+</div>

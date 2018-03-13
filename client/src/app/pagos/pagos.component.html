@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-grid #grid0 [allowDelete]="true" [allowAdd]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [count]="getPagosCount" [data]="getPagosResult" emptyText="No records to display." (loadData)="grid0LoadData($event)" (delete)="grid0Delete($event)" (add)="grid0Add($event)" (rowSelect)="grid0RowSelect($event)">
+      <rz-grid-column format="date-time" property="CreatedOn" title="Created On" type="string">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.CreatedOn | utcDate}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="Id" title="Id" type="integer">
+      </rz-grid-column>
+      <rz-grid-column property="MetodoPagoId" sortProperty="MetodoPago.Nombre" filterProperty="MetodoPago.Nombre" title="Metodo Pago" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.MetodoPago?.Nombre}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="decimal" property="Monto" title="Monto" type="number">
+      </rz-grid-column>
+      <rz-grid-column format="decimal" property="Saldo" title="Saldo" type="number">
+      </rz-grid-column>
+      <rz-grid-column format="date-time" property="UpdatedOn" title="Updated On" type="string">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.UpdatedOn | utcDate}}
+        </ng-template>
+      </rz-grid-column>
+    </rz-grid>
+  </div>
+</div>

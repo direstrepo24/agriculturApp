@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-form #form0 [data]="producto" (cancel)="form0Cancel($event)" (submit)="form0Submit($event)">
+      <rz-string-form-field property="CodigoUp" [required]="false" title="Codigo Up" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-string-form-field property="Descripcion" [required]="false" title="Descripcion" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-date-form-field property="FechaLimiteDisponibilidad" [required]="true" title="Fecha Limite Disponibilidad" requiredText="is required" type="date">
+      </rz-date-form-field>
+      <rz-integer-form-field property="Id" [required]="true" title="Id" requiredText="is required" type="integer">
+      </rz-integer-form-field>
+      <rz-string-form-field property="Imagen" [required]="false" title="Imagen" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-boolean-form-field property="IsEnable" [required]="true" title="Is Enable" requiredText="is required" type="boolean">
+      </rz-boolean-form-field>
+      <rz-number-form-field property="Precio" [required]="true" title="Precio" requiredText="is required" type="number">
+      </rz-number-form-field>
+      <rz-number-form-field property="PrecioSpecial" [required]="false" title="Precio Special" requiredText="is required" type="number">
+      </rz-number-form-field>
+      <rz-number-form-field property="Stock" [required]="true" title="Stock" requiredText="is required" type="number">
+      </rz-number-form-field>
+      <rz-string-form-field property="nombre" [required]="false" title="Nombre" requiredText="is required" type="string">
+      </rz-string-form-field>
+      <rz-lookup-form-field [data]="getCalidadsResult" property="CalidadId" [required]="true" textProperty="Descripcion" title="Calidad" valueProperty="Id" placeholder="Choose Calidad" requiredText="is required" type="lookup">
+      </rz-lookup-form-field>
+      <rz-lookup-form-field [data]="getCategoriaResult" property="CategoriaId" [required]="true" textProperty="Descripcion" title="Categorium" valueProperty="Id" placeholder="Choose Categorium" requiredText="is required" type="lookup">
+      </rz-lookup-form-field>
+      <rz-lookup-form-field [data]="getCultivosResult" property="cultivoId" [required]="true" textProperty="Descripcion" title="Cultivo" valueProperty="Id" placeholder="Choose Cultivo" requiredText="is required" type="lookup">
+      </rz-lookup-form-field>
+    </rz-form>
+  </div>
+</div>

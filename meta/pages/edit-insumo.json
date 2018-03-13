@@ -1,0 +1,165 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "${insumo}",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to update Insumo",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.updateInsumo",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${parameters.Id}"
+                      },
+                      {
+                        "name": "Insumo",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "insumos",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Descripcion",
+                  "required": false,
+                  "title": "Descripcion",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Fecha_Vencimiento",
+                  "required": true,
+                  "title": "Fecha Vencimiento",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Nombre",
+                  "required": false,
+                  "title": "Nombre",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "lote_laboratorio",
+                  "required": false,
+                  "title": "Lote Laboratorio",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getTipoInsumosResult}",
+                  "property": "Tipo_InsumoId",
+                  "required": true,
+                  "textProperty": "Nombre",
+                  "title": "Tipo Insumo",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose TipoInsumo",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getLaboratoriosResult}",
+                  "property": "laboratorioId",
+                  "required": true,
+                  "textProperty": "Nombre",
+                  "title": "Laboratorio",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Laboratorio",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getInsumoById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "insumo",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getTipoInsumos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTipoInsumosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getLaboratorios",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getLaboratoriosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Insumo",
+  "access": [
+    "Authenticated"
+  ]
+}

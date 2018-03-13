@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-grid #grid0 [allowDelete]="true" [allowAdd]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [count]="getProductosCount" [data]="getProductosResult" emptyText="No records to display." (loadData)="grid0LoadData($event)" (delete)="grid0Delete($event)" (add)="grid0Add($event)" (rowSelect)="grid0RowSelect($event)">
+      <rz-grid-column format="int64" property="CalidadId" sortProperty="Calidad.Descripcion" filterProperty="Calidad.Descripcion" title="Calidad" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Calidad?.Descripcion}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column property="CategoriaId" sortProperty="Categorium.Descripcion" filterProperty="Categorium.Descripcion" title="Categorium" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Categorium?.Descripcion}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column property="CodigoUp" title="Codigo Up" type="string">
+      </rz-grid-column>
+      <rz-grid-column property="Descripcion" title="Descripcion" type="string">
+      </rz-grid-column>
+      <rz-grid-column format="date-time" property="FechaLimiteDisponibilidad" title="Fecha Limite Disponibilidad" type="string">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.FechaLimiteDisponibilidad | utcDate}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="Id" title="Id" type="integer">
+      </rz-grid-column>
+      <rz-grid-column property="Imagen" title="Imagen" type="string">
+      </rz-grid-column>
+      <rz-grid-column property="IsEnable" title="Is Enable" type="boolean">
+      </rz-grid-column>
+      <rz-grid-column format="decimal" property="Precio" title="Precio" type="number">
+      </rz-grid-column>
+      <rz-grid-column format="decimal" property="PrecioSpecial" title="Precio Special" type="number">
+      </rz-grid-column>
+      <rz-grid-column format="float" property="Stock" title="Stock" type="number">
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="cultivoId" sortProperty="Cultivo.Descripcion" filterProperty="Cultivo.Descripcion" title="Cultivo" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Cultivo?.Descripcion}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column property="nombre" title="Nombre" type="string">
+      </rz-grid-column>
+    </rz-grid>
+  </div>
+</div>

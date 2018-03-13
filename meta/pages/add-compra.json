@@ -1,0 +1,149 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to create new Compra!",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.createCompra",
+                    "parameters": [
+                      {
+                        "name": "Compra",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "compras",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "CodigoCupon",
+                  "required": false,
+                  "title": "Codigo Cupon",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "CompraStatus",
+                  "required": true,
+                  "title": "Compra Status",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "CreatedOn",
+                  "required": true,
+                  "title": "Created On",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Descuento",
+                  "required": true,
+                  "title": "Descuento",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Impuesto",
+                  "required": true,
+                  "title": "Impuesto",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "MetodoPago",
+                  "required": false,
+                  "title": "Metodo Pago",
+                  "type": "string",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "TotalCompra",
+                  "required": true,
+                  "title": "Total Compra",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "UpdatedOn",
+                  "required": true,
+                  "title": "Updated On",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getUsuariosResult}",
+                  "property": "UsuarioId",
+                  "required": true,
+                  "textProperty": "Apellidos",
+                  "title": "Usuario",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Usuario",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getUsuarios",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getUsuariosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Add Compra",
+  "access": [
+    "Authenticated"
+  ]
+}

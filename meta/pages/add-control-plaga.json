@@ -1,0 +1,176 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to create new ControlPlaga!",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.createControlPlaga",
+                    "parameters": [
+                      {
+                        "name": "ControlPlaga",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "control-plagas",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "Dosis",
+                  "required": true,
+                  "title": "Dosis",
+                  "type": "number",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Fecha_aplicacion",
+                  "required": true,
+                  "title": "Fecha Aplicacion",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getCultivosResult}",
+                  "property": "CultivoId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Cultivo",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Cultivo",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getEnfermedadesResult}",
+                  "property": "EnfermedadesId",
+                  "required": true,
+                  "textProperty": "Codigo",
+                  "title": "Enfermedade",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Enfermedade",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getTratamientosResult}",
+                  "property": "TratamientoId",
+                  "required": false,
+                  "textProperty": "Desc_Aplicacion",
+                  "title": "Tratamiento",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Tratamiento",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getUnidadMedidasResult}",
+                  "property": "UnidadMedidaId",
+                  "required": true,
+                  "textProperty": "Descripcion",
+                  "title": "Unidad Medida",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose UnidadMedida",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getCultivos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getCultivosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getEnfermedades",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getEnfermedadesResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getTratamientos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTratamientosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getUnidadMedidas",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getUnidadMedidasResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Add Control Plaga",
+  "access": [
+    "Authenticated"
+  ]
+}

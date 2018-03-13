@@ -1,0 +1,223 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "name": "grid0",
+              "allowDelete": true,
+              "allowAdd": true,
+              "allowFiltering": true,
+              "allowMultiSorting": false,
+              "allowPaging": true,
+              "allowSorting": true,
+              "count": "${getCultivosCount}",
+              "data": "${getCultivosResult}",
+              "events": {
+                "loadData": [
+                  {
+                    "name": "agriculturebd.getCultivos",
+                    "parameters": [
+                      {
+                        "name": "$top",
+                        "value": "this.grid0.allowPaging ? event.top : null"
+                      },
+                      {
+                        "name": "$skip",
+                        "value": "this.grid0.allowPaging ? event.skip : null"
+                      },
+                      {
+                        "name": "$expand",
+                        "value": "DetalleTipoProducto,Lote"
+                      },
+                      {
+                        "name": "$count",
+                        "value": "this.grid0.allowPaging"
+                      },
+                      {
+                        "name": "$filter",
+                        "value": "${event.filter}"
+                      },
+                      {
+                        "name": "$orderby",
+                        "value": "${event.orderby}"
+                      },
+                      {
+                        "name": "$expand",
+                        "value": "DetalleTipoProducto,Lote"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "name": "getCultivosResult",
+                        "type": "set",
+                        "value": "${result.value}"
+                      },
+                      {
+                        "name": "getCultivosCount",
+                        "type": "set",
+                        "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
+                "delete": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to delete Cultivo",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.deleteCultivo",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${event.Id}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "detail": "Cultivo deleted!",
+                        "severity": "success",
+                        "summary": "Success",
+                        "type": "notify"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
+                "add": [
+                  {
+                    "path": "add-cultivo",
+                    "type": "popup"
+                  }
+                ],
+                "rowSelect": [
+                  {
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${event.Id}"
+                      }
+                    ],
+                    "path": "edit-cultivo",
+                    "type": "popup"
+                  }
+                ]
+              },
+              "title": "",
+              "columns": [
+                {
+                  "property": "Descripcion",
+                  "title": "Descripcion",
+                  "type": "string"
+                },
+                {
+                  "format": "int64",
+                  "property": "DetalleTipoProductoId",
+                  "sortProperty": "DetalleTipoProducto.Descripcion",
+                  "filterProperty": "DetalleTipoProducto.Descripcion",
+                  "template": "${data.DetalleTipoProducto?.Descripcion}",
+                  "title": "Detalle Tipo Producto",
+                  "type": "integer"
+                },
+                {
+                  "format": "decimal",
+                  "property": "EstimadoCosecha",
+                  "title": "Estimado Cosecha",
+                  "type": "number"
+                },
+                {
+                  "format": "date-time",
+                  "property": "FechaFin",
+                  "template": "${data.FechaFin | utcDate}",
+                  "title": "Fecha Fin",
+                  "type": "string"
+                },
+                {
+                  "format": "date-time",
+                  "property": "FechaIncio",
+                  "template": "${data.FechaIncio | utcDate}",
+                  "title": "Fecha Incio",
+                  "type": "string"
+                },
+                {
+                  "format": "int64",
+                  "property": "Id",
+                  "title": "Id",
+                  "type": "integer"
+                },
+                {
+                  "format": "int64",
+                  "property": "LoteId",
+                  "sortProperty": "Lote.Codigo",
+                  "filterProperty": "Lote.Codigo",
+                  "template": "${data.Lote?.Codigo}",
+                  "title": "Lote",
+                  "type": "integer"
+                },
+                {
+                  "property": "Nombre",
+                  "title": "Nombre",
+                  "type": "string"
+                }
+              ],
+              "type": "grid",
+              "emptyText": "No records to display."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getCultivos",
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "this.grid0.allowPaging ? this.grid0.pageSize : null"
+          },
+          {
+            "name": "$skip",
+            "value": "this.grid0.allowPaging ? 0 : null"
+          },
+          {
+            "name": "$count",
+            "value": "this.grid0.allowPaging"
+          },
+          {
+            "name": "$expand",
+            "value": "DetalleTipoProducto,Lote"
+          }
+        ],
+        "then": [
+          {
+            "name": "getCultivosResult",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "name": "getCultivosCount",
+            "type": "set",
+            "value": "this.grid0.allowPaging ? result['@odata.count'] : ${result.value.length}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Cultivos",
+  "access": [
+    "Authenticated"
+  ]
+}

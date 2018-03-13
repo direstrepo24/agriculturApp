@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-12">
+    <rz-grid #grid0 [allowDelete]="true" [allowAdd]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [count]="getUsuariosCount" [data]="getUsuariosResult" emptyText="No records to display." (loadData)="grid0LoadData($event)" (delete)="grid0Delete($event)" (add)="grid0Add($event)" (rowSelect)="grid0RowSelect($event)">
+      <rz-grid-column property="Apellidos" title="Apellidos" type="string">
+      </rz-grid-column>
+      <rz-grid-column property="DetallemetodoPagoId" sortProperty="DetalleMetodopago.Nombre" filterProperty="DetalleMetodopago.Nombre" title="Detalle Metodopago" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.DetalleMetodopago?.Nombre}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column property="Email" title="Email" type="string">
+      </rz-grid-column>
+      <rz-grid-column property="EmailConfirmed" title="Email Confirmed" type="boolean">
+      </rz-grid-column>
+      <rz-grid-column property="Estado" title="Estado" type="string">
+      </rz-grid-column>
+      <rz-grid-column format="date-time" property="FechaRegistro" title="Fecha Registro" type="string">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.FechaRegistro | utcDate}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column property="Fotopefil" title="Fotopefil" type="string">
+      </rz-grid-column>
+      <rz-grid-column format="int64" property="Id" title="Id" type="integer">
+      </rz-grid-column>
+      <rz-grid-column property="Identificacion" title="Identificacion" type="string">
+      </rz-grid-column>
+      <rz-grid-column property="Nombre" title="Nombre" type="string">
+      </rz-grid-column>
+      <rz-grid-column property="Nro_movil" title="Nro Movil" type="string">
+      </rz-grid-column>
+      <rz-grid-column property="NumeroCuenta" title="Numero Cuenta" type="string">
+      </rz-grid-column>
+      <rz-grid-column property="PhoneNumber" title="Phone Number" type="string">
+      </rz-grid-column>
+      <rz-grid-column property="PhoneNumberConfirmed" title="Phone Number Confirmed" type="boolean">
+      </rz-grid-column>
+      <rz-grid-column property="RolId" sortProperty="Rol.Nombre" filterProperty="Rol.Nombre" title="Rol" type="integer">
+        <ng-template let-data gridColumnTemplate>
+        {{data?.Rol?.Nombre}}
+        </ng-template>
+      </rz-grid-column>
+      <rz-grid-column property="UserName" title="User Name" type="string">
+      </rz-grid-column>
+    </rz-grid>
+  </div>
+</div>

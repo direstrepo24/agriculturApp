@@ -1,0 +1,67 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "data": "${getMetodoPagosResult}",
+      "events": {
+        "change": [
+          {
+            "name": "agriculturebd.getDetalleMetodopagos",
+            "parameters": [
+              {
+                "name": "$filter",
+                "value": "MetodoPagoId eq ${event.Id}"
+              }
+            ],
+            "then": [
+              {
+                "name": "DetalleResul",
+                "type": "set",
+                "value": "${result.value}"
+              }
+            ],
+            "type": "invoke"
+          }
+        ]
+      },
+      "name": "Metodos",
+      "placeholder": "Metodos",
+      "style": {
+        "width": "171px"
+      },
+      "textProperty": "Nombre",
+      "type": "dropdown",
+      "valueProperty": "Id"
+    },
+    {
+      "data": "${DetalleResul}",
+      "name": "Detalles",
+      "placeholder": "Detalles",
+      "style": {
+        "width": "177px"
+      },
+      "textProperty": "Nombre",
+      "type": "dropdown",
+      "valueProperty": "Id"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getMetodoPagos",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getMetodoPagosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Filter"
+}

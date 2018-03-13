@@ -1,0 +1,142 @@
+{
+  "components": [
+    {
+      "type": "row",
+      "components": [
+        {
+          "type": "col",
+          "class": "col-md-12",
+          "components": [
+            {
+              "data": "${oferta}",
+              "events": {
+                "cancel": [
+                  {
+                    "type": "back"
+                  }
+                ],
+                "submit": [
+                  {
+                    "error": [
+                      {
+                        "detail": "Unable to update Oferta",
+                        "severity": "error",
+                        "summary": "Error",
+                        "type": "notify"
+                      }
+                    ],
+                    "name": "agriculturebd.updateOferta",
+                    "parameters": [
+                      {
+                        "name": "Id",
+                        "value": "${parameters.Id}"
+                      },
+                      {
+                        "name": "Oferta",
+                        "value": "${event}"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "path": "oferta",
+                        "type": "navigate"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ]
+              },
+              "fields": [
+                {
+                  "property": "CreatedOn",
+                  "required": true,
+                  "title": "Created On",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "EstadoOferta",
+                  "required": true,
+                  "title": "Estado Oferta",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "EstadoOfertaId",
+                  "required": true,
+                  "title": "Estado Oferta Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "Id",
+                  "required": true,
+                  "title": "Id",
+                  "type": "integer",
+                  "requiredText": "is required"
+                },
+                {
+                  "property": "UpdatedOn",
+                  "required": true,
+                  "title": "Updated On",
+                  "type": "date",
+                  "requiredText": "is required"
+                },
+                {
+                  "data": "${getUsuariosResult}",
+                  "property": "UsuarioId",
+                  "required": true,
+                  "textProperty": "Apellidos",
+                  "title": "Usuario",
+                  "type": "lookup",
+                  "valueProperty": "Id",
+                  "placeholder": "Choose Usuario",
+                  "requiredText": "is required"
+                }
+              ],
+              "name": "form0",
+              "type": "form"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "agriculturebd.getOfertaById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "oferta",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "agriculturebd.getUsuarios",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getUsuariosResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Oferta",
+  "access": [
+    "Authenticated"
+  ]
+}
